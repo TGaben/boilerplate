@@ -49,12 +49,12 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-${{ matrix.node-versions }}-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ matrix.node-versions }}-${{ hashFiles('**/package.json') }}
         restore-keys: |
           ${{ runner.os }}-node-${{ matrix.node-versions }}-
 
     - name: Install NPM dependencies
-      run: npm ci
+      run: npm install
 
     - name: Build assets
       run: npm run build
