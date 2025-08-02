@@ -52,6 +52,26 @@ parameters:
         - '#Parameter \#1 \$placeholder of method Filament\\Tables\\Columns\\Column::placeholder\(\) expects .* array\|string\|null given\.#'
         - '#Parameter \#1 \$heading of method Filament\\Tables\\Table::heading\(\) expects .* array\|string\|null given\.#'
         - '#Parameter \#1 \$description of method Filament\\Tables\\Table::description\(\) expects .* array\|string\|null given\.#'
+        
+        # Ignore translation function return type ambiguity in ActivityResource
+        - '#Parameter \#1 \$label of method Filament\\Tables\\Filters\\BaseFilter::label\(\) expects Closure\|string\|null, array\|string\|null given\.#'
+        - '#Parameter \#1 \$options of method Filament\\Tables\\Filters\\SelectFilter::options\(\) expects .* array\|string\|null.*given\.#'
+        
+        # Ignore translation function return type ambiguity in ActivityResource ViewActivity
+        - '#Parameter \#1 \$label of method Filament\\Infolists\\Components\\Component::label\(\) expects .* array\|string\|null given\.#'
+        - '#Parameter \#1 \$placeholder of method Filament\\Infolists\\Components\\Entry::placeholder\(\) expects .* array\|string\|null given\.#'
+        
+        # Ignore Schema connection parameter type issues in migrations (Laravel dynamic config)
+        - '#Parameter \#1 \$name of static method Illuminate\\Support\\Facades\\Schema::connection\(\) expects string\|null, mixed given\.#'
+        - '#Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder::(create|dropIfExists|table)\(\) expects string, mixed given\.#'
+        
+        # Ignore User factory/model type issues in tests (Laravel factories return Collection or Model)
+        - '#Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.*::\$id\.#'
+        - '#Call to an undefined method App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.*::update\(\)\.#'
+        - '#Parameter \#1 \$user of method App\\Policies\\.*::.*\(\) expects App\\Models\\User, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.* given\.#'
+        
+        # Ignore Activity model static method calls (Spatie ActivityLog Eloquent model)
+        - '#Call to an undefined static method Spatie\\Activitylog\\Models\\Activity::(where|first|truncate)\(\)\.#'
         - '#Parameter \#1 \$array of function array_keys expects array, mixed given\.#'
         - '#Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session::.* expects .* mixed given\.#'
         - '#Parameter \#1 \$locale of static method Illuminate\\Support\\Facades\\App::setLocale\(\) expects string, mixed given\.#'
