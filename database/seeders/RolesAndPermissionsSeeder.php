@@ -31,6 +31,22 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete_user',
             'restore_user',
             'force_delete_user',
+            // Filament Shield style permissions for RoleResource
+            'view_any_role',
+            'view_role',
+            'create_role',
+            'update_role',
+            'delete_role',
+            'delete_any_role',
+            'force_delete_role',
+            'force_delete_any_role',
+            'restore_role',
+            'restore_any_role',
+            'replicate_role',
+            'reorder_role',
+            // Filament Shield style permissions for PermissionResource (view-only)
+            'view_any_permission',
+            'view_permission',
         ];
 
         foreach ($permissions as $permission) {
