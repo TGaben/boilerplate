@@ -50,7 +50,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 'panels::topbar.end',
-                fn (): string => \Livewire\Livewire::mount('language-switcher')->html(),
+                fn (): string => \Livewire\Livewire::mount('language-switcher'),
             )
             ->middleware([
                 EncryptCookies::class,
