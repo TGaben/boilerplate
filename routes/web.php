@@ -7,5 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'));
 
-// Language switching routes
-Route::post('/language/switch/{language}', [LanguageController::class, 'switch'])->name('language.switch')->middleware('web');
+// Language switching routes - use admin middleware to match Filament
+Route::post('/language/switch/{language}', [LanguageController::class, 'switch'])
+    ->name('language.switch')
+    ->middleware(['web', \App\Http\Middleware\SetLocale::class]);

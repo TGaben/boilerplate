@@ -50,12 +50,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 'panels::topbar.end',
-                fn (): string => view('filament.widgets.language-switcher')->render(),
+                fn (): string => \Livewire\Livewire::mount('language-switcher')->html(),
             )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
+                \App\Http\Middleware\SetLocale::class, // Add SetLocale to Filament middleware stack
                 AuthenticateSession::class,
                 ShareErrorsFromSession::class,
                 VerifyCsrfToken::class,
