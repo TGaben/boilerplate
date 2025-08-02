@@ -49,12 +49,11 @@ class ActivityResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(fn () => \Spatie\Activitylog\Models\Activity::query()->select(['id', 'description', 'subject_type', 'subject_id', 'causer_type', 'causer_id', 'created_at']))
             ->columns([
-                Tables\Columns\TextColumn::make('causer.name')
-                    ->label(__('messages.User'))
-                    ->sortable()
-                    ->searchable()
-                    ->placeholder(__('messages.System')),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('description')
                     ->label(__('messages.Action'))
@@ -64,40 +63,32 @@ class ActivityResource extends Resource
                 Tables\Columns\TextColumn::make('subject_type')
                     ->label(__('messages.Model'))
                     ->sortable()
-                    ->formatStateUsing(fn ($state) => class_basename($state)),
+                    ->formatStateUsing(fn ($state) => class_basename($state ?? '')),
 
                 Tables\Columns\TextColumn::make('subject_id')
                     ->label(__('messages.Record ID'))
                     ->sortable(),
 
+                Tables\Columns\TextColumn::make('causer_id')
+                    ->label(__('messages.User ID'))
+                    ->sortable()
+                    ->placeholder(__('messages.System')),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('messages.Date'))
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(),
+                    ->sortable(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('causer_id')
-                    ->label(__('messages.User'))
-                    ->relationship('causer', 'name')
-                    ->searchable()
-                    ->preload(),
-
-                Tables\Filters\SelectFilter::make('subject_type')
-                    ->label(__('messages.Model'))
-                    ->options([
-                        'App\Models\User' => __('messages.User'),
-                        'App\Models\Role' => __('messages.Role'),
-                        'App\Models\Permission' => __('messages.Permission'),
-                    ]),
+                // Simplified filters without relationships
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                // Remove bulk actions for read-only resource
+                // No bulk actions
             ])
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('id', 'desc')
             ->heading(__('messages.Activity Log'))
             ->description(__('messages.Activity Log Description'))
             ->searchable(false);
