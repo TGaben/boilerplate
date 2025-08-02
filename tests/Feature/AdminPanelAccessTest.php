@@ -108,7 +108,7 @@ class AdminPanelAccessTest extends TestCase
 
         // Check for essential form elements that must be present
         $this->assertTrue(
-            str_contains($content, 'type="email"') || str_contains($content, 'email'),
+            str_contains((string) $content, 'type="email"') || str_contains((string) $content, 'email'),
             'Login page should contain email input field',
         );
     }
