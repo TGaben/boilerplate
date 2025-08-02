@@ -82,8 +82,8 @@ jobs:
     - name: Run database migrations
       run: php artisan migrate --force
 
-    - name: Check code style (PHP CS Fixer)
-      run: composer cs-check
+    - name: Check code style (Laravel Pint)
+      run: composer lint
 
     - name: Run static analysis (PHPStan)
       run: composer stan
