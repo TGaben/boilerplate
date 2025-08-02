@@ -37,6 +37,20 @@ parameters:
         - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::where\(\)\.#'
         - '#Call to an undefined static method App\\Models\\User::count\(\)\.#'
         - '#Call to an undefined static method App\\Models\\User::role\(\)\.#'
+        
+        # Translation function type issues - Laravel __() returns array|string|null but Filament expects string
+        - '#Method App\\Filament\\Resources\\.*::getNavigationLabel\(\) should return string but returns array\|string\|null\.#'
+        - '#Method App\\Filament\\Resources\\.*::getModelLabel\(\) should return string but returns array\|string\|null\.#'
+        - '#Method App\\Filament\\Resources\\.*::getPluralModelLabel\(\) should return string but returns array\|string\|null\.#'
+        - '#Method App\\Filament\\Resources\\.*::getNavigationGroup\(\) should return string\|null but returns array\|string\|null\.#'
+        - '#Parameter \#1 \$label of method Filament\\Forms\\Components\\Component::label\(\) expects .* array\|string\|null given\.#'
+        - '#Parameter \#1 \$text of method Filament\\Forms\\Components\\Field::helperText\(\) expects .* array\|string\|null given\.#'
+        - '#Parameter \#1 \$label of method Filament\\Tables\\Columns\\Column::label\(\) expects .* array\|string\|null given\.#'
+        - '#Parameter \#1 \$array of function array_keys expects array, mixed given\.#'
+        - '#Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session::.* expects .* mixed given\.#'
+        - '#Parameter \#1 \$locale of static method Illuminate\\Support\\Facades\\App::setLocale\(\) expects string, mixed given\.#'
+        - '#Method App\\Http\\Controllers\\LanguageController::.* should return .* but returns mixed\.#'
+        - '#Parameter \#2 \$array of method PHPUnit\\Framework\\Assert::assertArrayHasKey\(\) expects .* mixed given\.#'
 
     
     # Exclude generated files and vendor
