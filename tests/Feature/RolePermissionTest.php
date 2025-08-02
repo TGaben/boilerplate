@@ -95,8 +95,8 @@ class RolePermissionTest extends TestCase
         // Run seeder again
         $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
 
-        // Should still have only 2 roles and 3 permissions
+        // Should still have only 2 roles and 10 permissions (original 3 + 7 UserResource permissions)
         $this->assertEquals(2, Role::count());
-        $this->assertEquals(3, Permission::count());
+        $this->assertEquals(10, Permission::count());
     }
 }

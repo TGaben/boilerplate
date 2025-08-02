@@ -215,35 +215,35 @@ class UserResource extends Resource
     public static function canViewAny(): bool
     {
         // Try Filament Shield permission first, fall back to policy
-        return auth()->user()?->can('view_any_user') ?? 
+        return auth()->user()?->can('view_any_user') ??
                auth()->user()?->can('viewAny', User::class) ?? false;
     }
 
     public static function canCreate(): bool
     {
         // Try Filament Shield permission first, fall back to policy
-        return auth()->user()?->can('create_user') ?? 
+        return auth()->user()?->can('create_user') ??
                auth()->user()?->can('create', User::class) ?? false;
     }
 
     public static function canEdit(\Illuminate\Database\Eloquent\Model $record): bool
     {
         // Try Filament Shield permission first, fall back to policy
-        return auth()->user()?->can('update_user') ?? 
+        return auth()->user()?->can('update_user') ??
                auth()->user()?->can('update', $record) ?? false;
     }
 
     public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
     {
         // Try Filament Shield permission first, fall back to policy
-        return auth()->user()?->can('delete_user') ?? 
+        return auth()->user()?->can('delete_user') ??
                auth()->user()?->can('delete', $record) ?? false;
     }
 
     public static function canView(\Illuminate\Database\Eloquent\Model $record): bool
     {
         // Try Filament Shield permission first, fall back to policy
-        return auth()->user()?->can('view_user') ?? 
+        return auth()->user()?->can('view_user') ??
                auth()->user()?->can('view', $record) ?? false;
     }
 }
