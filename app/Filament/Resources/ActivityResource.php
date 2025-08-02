@@ -137,4 +137,14 @@ class ActivityResource extends Resource
     {
         return false;
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return []; // No searchable attributes for global search
+    }
+
+    public static function getGlobalSearchResultTitle(\Illuminate\Database\Eloquent\Model $record): string
+    {
+        return $record->description ?? '';
+    }
 }
