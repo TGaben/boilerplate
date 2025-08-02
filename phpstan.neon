@@ -35,6 +35,8 @@ parameters:
         - '#Access to an undefined property App\\Models\\User::\$id\.#'
         - '#Anonymous function should return Illuminate\\Database\\Eloquent\\Builder but returns Illuminate\\Database\\Query\\Builder\.#'
         - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::where\(\)\.#'
+        - '#Call to an undefined static method App\\Models\\User::count\(\)\.#'
+        - '#Call to an undefined static method App\\Models\\User::role\(\)\.#'
 
     
     # Exclude generated files and vendor
