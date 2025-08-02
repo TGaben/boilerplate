@@ -49,7 +49,12 @@ class ActivityResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(fn () => \Spatie\Activitylog\Models\Activity::query()->select(['id', 'description', 'subject_type', 'subject_id', 'causer_type', 'causer_id', 'created_at']))
+            ->query(function () {
+                /** @var \Illuminate\Database\Eloquent\Builder $query */
+                $query = \Spatie\Activitylog\Models\Activity::query();
+
+                return $query->select(['id', 'description', 'subject_type', 'subject_id', 'causer_type', 'causer_id', 'created_at']);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')

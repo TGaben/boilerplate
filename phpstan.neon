@@ -52,10 +52,7 @@ parameters:
         - '#Parameter \#1 \$placeholder of method Filament\\Tables\\Columns\\Column::placeholder\(\) expects .* array\|string\|null given\.#'
         - '#Parameter \#1 \$heading of method Filament\\Tables\\Table::heading\(\) expects .* array\|string\|null given\.#'
         - '#Parameter \#1 \$description of method Filament\\Tables\\Table::description\(\) expects .* array\|string\|null given\.#'
-        
-        # Ignore translation function return type ambiguity in ActivityResource
-        - '#Parameter \#1 \$label of method Filament\\Tables\\Filters\\BaseFilter::label\(\) expects Closure\|string\|null, array\|string\|null given\.#'
-        - '#Parameter \#1 \$options of method Filament\\Tables\\Filters\\SelectFilter::options\(\) expects .* array\|string\|null.*given\.#'
+
         
         # Ignore translation function return type ambiguity in ActivityResource ViewActivity
         - '#Parameter \#1 \$label of method Filament\\Infolists\\Components\\Component::label\(\) expects .* array\|string\|null given\.#'
