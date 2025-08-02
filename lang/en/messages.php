@@ -121,4 +121,14 @@ return [
     'Guard' => 'Guard',
     'Web' => 'Web',
     'API' => 'API',
+
+    // Activity Log
+    'Activity' => 'Activity',
+    'Activity Log' => 'Activity Log',
+    'Activity Log Description' => 'Detailed log of system activities',
+    'Action' => 'Action',
+    'Model' => 'Model',
+    'Record ID' => 'Record ID',
+    'Date' => 'Date',
+    'System' => 'System',
 ];

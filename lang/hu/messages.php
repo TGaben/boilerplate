@@ -121,4 +121,14 @@ return [
     'Guard' => 'Guard',
     'Web' => 'Web',
     'API' => 'API',
+
+    // Activity Log
+    'Activity' => 'Tevékenység',
+    'Activity Log' => 'Tevékenységnapló',
+    'Activity Log Description' => 'Rendszer tevékenységek részletes naplója',
+    'Action' => 'Művelet',
+    'Model' => 'Modell',
+    'Record ID' => 'Rekord azonosító',
+    'Date' => 'Dátum',
+    'System' => 'Rendszer',
 ];
