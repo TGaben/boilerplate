@@ -20,10 +20,9 @@ class SetLocale
     public function handle(Request $request, Closure $next): Response
     {
         // Get the locale from session, fallback to default config locale
-        $locale = Session::get(
-            config('languages.session_key', 'locale'),
-            config('languages.default', config('app.locale', 'hu')),
-        );
+        $sessionKey = config('languages.session_key', 'locale');
+        $defaultLocale = config('languages.default', config('app.locale', 'hu'));
+        $locale = Session::get($sessionKey, $defaultLocale);
 
         // Ensure the locale is supported
         $availableLanguages = array_keys(config('languages.available', []));

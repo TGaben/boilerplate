@@ -1,5 +1,5 @@
 @php
-    $currentLanguage = session(config('languages.session_key', 'locale'), config('languages.default', 'hu'));
+    $currentLanguage = app()->getLocale(); // Use current app locale instead of session
     $availableLanguages = config('languages.available', []);
 @endphp
 
