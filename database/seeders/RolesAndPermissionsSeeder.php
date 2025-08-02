@@ -36,5 +36,22 @@ class RolesAndPermissionsSeeder extends Seeder
         // Assign permissions to roles (idempotent)
         $adminRole->syncPermissions($permissions);
         $userRole->syncPermissions([]);
+
+        // Create admin user (idempotent)
+        $adminUser = \App\Models\User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin User',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'email_verified_at' => now(),
+                'profile_photo_path' => null,
+                'last_login_at' => now(),
+            ],
+        );
+
+        // Assign admin role to admin user (idempotent)
+        if (!$adminUser->hasRole('admin')) {
+            $adminUser->assignRole('admin');
+        }
     }
 }
