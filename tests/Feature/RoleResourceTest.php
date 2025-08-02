@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -20,7 +21,7 @@ class RoleResourceTest extends TestCase
         $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
     }
 
-    /** @test */
+    #[Test]
     public function guest_cannot_access_role_resource(): void
     {
         $response = $this->get('/admin/roles');
@@ -28,7 +29,7 @@ class RoleResourceTest extends TestCase
         $response->assertRedirect('/admin/login');
     }
 
-    /** @test */
+    #[Test]
     public function user_without_admin_role_cannot_access_role_resource(): void
     {
         $user = User::factory()->create();
@@ -39,7 +40,7 @@ class RoleResourceTest extends TestCase
         $response->assertStatus(403); // Forbidden
     }
 
-    /** @test */
+    #[Test]
     public function admin_user_can_access_role_resource(): void
     {
         $admin = User::factory()->create();
@@ -51,7 +52,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue(\App\Filament\Resources\RoleResource::canCreate());
     }
 
-    /** @test */
+    #[Test]
     public function admin_user_from_seeder_can_access_role_resource(): void
     {
         $adminUser = User::where('email', 'admin@example.com')->first();
@@ -64,7 +65,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue(\App\Filament\Resources\RoleResource::canCreate());
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_view_roles_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -77,7 +78,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue($admin->can('view', $role));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_view_roles_via_policy(): void
     {
         $user = User::factory()->create();
@@ -90,7 +91,7 @@ class RoleResourceTest extends TestCase
         $this->assertFalse($user->can('view', $role));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_create_roles_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -99,7 +100,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue($admin->can('create', Role::class));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_create_roles_via_policy(): void
     {
         $user = User::factory()->create();
@@ -108,7 +109,7 @@ class RoleResourceTest extends TestCase
         $this->assertFalse($user->can('create', Role::class));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_update_roles_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -120,7 +121,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue($admin->can('update', $role));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_update_roles_via_policy(): void
     {
         $user = User::factory()->create();
@@ -132,7 +133,7 @@ class RoleResourceTest extends TestCase
         $this->assertFalse($user->can('update', $role));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_delete_roles_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -143,7 +144,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue($admin->can('delete', $role));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_delete_roles_via_policy(): void
     {
         $user = User::factory()->create();
@@ -155,7 +156,7 @@ class RoleResourceTest extends TestCase
         $this->assertFalse($user->can('delete', $role));
     }
 
-    /** @test */
+    #[Test]
     public function roles_are_available_in_system(): void
     {
         $this->assertDatabaseHas('roles', ['name' => 'admin']);
@@ -168,7 +169,7 @@ class RoleResourceTest extends TestCase
         $this->assertNotNull($userRole);
     }
 
-    /** @test */
+    #[Test]
     public function admin_role_has_permissions_assigned(): void
     {
         $adminRole = Role::where('name', 'admin')->first();
@@ -182,7 +183,7 @@ class RoleResourceTest extends TestCase
         $this->assertTrue($adminRole->hasPermissionTo('manage users'));
     }
 
-    /** @test */
+    #[Test]
     public function user_role_has_no_admin_permissions(): void
     {
         $userRole = Role::where('name', 'user')->first();
@@ -192,7 +193,7 @@ class RoleResourceTest extends TestCase
         $this->assertEquals(0, $userRole->permissions()->count());
     }
 
-    /** @test */
+    #[Test]
     public function permissions_exist_in_system(): void
     {
         $expectedPermissions = [
@@ -211,19 +212,19 @@ class RoleResourceTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function role_resource_uses_correct_model(): void
     {
         $this->assertEquals(Role::class, \App\Filament\Resources\RoleResource::getModel());
     }
 
-    /** @test */
+    #[Test]
     public function permission_resource_uses_correct_model(): void
     {
         $this->assertEquals(Permission::class, \App\Filament\Resources\PermissionResource::getModel());
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_access_permission_resource(): void
     {
         $admin = User::factory()->create();
@@ -237,7 +238,7 @@ class RoleResourceTest extends TestCase
         $this->assertFalse(\App\Filament\Resources\PermissionResource::canCreate());
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_access_permission_resource(): void
     {
         $user = User::factory()->create();

@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -22,6 +23,7 @@ class RolePermissionTest extends TestCase
         $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
     }
 
+    #[Test]
     public function test_user_can_be_assigned_role(): void
     {
         $user = User::factory()->create();
@@ -32,6 +34,7 @@ class RolePermissionTest extends TestCase
         $this->assertFalse($user->hasRole('user'));
     }
 
+    #[Test]
     public function test_user_can_be_assigned_multiple_roles(): void
     {
         $user = User::factory()->create();
@@ -42,6 +45,7 @@ class RolePermissionTest extends TestCase
         $this->assertTrue($user->hasRole('user'));
     }
 
+    #[Test]
     public function test_user_with_admin_role_has_admin_permissions(): void
     {
         $user = User::factory()->create();
@@ -52,6 +56,7 @@ class RolePermissionTest extends TestCase
         $this->assertTrue($user->can('view reports'));
     }
 
+    #[Test]
     public function test_user_with_user_role_has_no_admin_permissions(): void
     {
         $user = User::factory()->create();
@@ -62,6 +67,7 @@ class RolePermissionTest extends TestCase
         $this->assertFalse($user->can('view reports'));
     }
 
+    #[Test]
     public function test_roles_and_permissions_are_created_by_seeder(): void
     {
         $this->assertDatabaseHas('roles', ['name' => 'admin']);
@@ -72,6 +78,7 @@ class RolePermissionTest extends TestCase
         $this->assertDatabaseHas('permissions', ['name' => 'view reports']);
     }
 
+    #[Test]
     public function test_admin_role_has_all_permissions(): void
     {
         $adminRole = Role::findByName('admin');
@@ -81,6 +88,7 @@ class RolePermissionTest extends TestCase
         $this->assertTrue($adminRole->hasPermissionTo('view reports'));
     }
 
+    #[Test]
     public function test_user_role_has_no_permissions(): void
     {
         $userRole = Role::findByName('user');
@@ -90,6 +98,7 @@ class RolePermissionTest extends TestCase
         $this->assertFalse($userRole->hasPermissionTo('view reports'));
     }
 
+    #[Test]
     public function test_seeder_is_idempotent(): void
     {
         // Run seeder again

@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserResourceTest extends TestCase
@@ -18,7 +19,7 @@ class UserResourceTest extends TestCase
         $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
     }
 
-    /** @test */
+    #[Test]
     public function guest_cannot_access_user_resource(): void
     {
         $response = $this->get('/admin/users');
@@ -26,7 +27,7 @@ class UserResourceTest extends TestCase
         $response->assertRedirect('/admin/login');
     }
 
-    /** @test */
+    #[Test]
     public function user_without_admin_role_cannot_access_user_resource(): void
     {
         $user = User::factory()->create();
@@ -37,7 +38,7 @@ class UserResourceTest extends TestCase
         $response->assertStatus(403); // Forbidden
     }
 
-    /** @test */
+    #[Test]
     public function admin_user_can_access_user_resource(): void
     {
         $admin = User::factory()->create();
@@ -49,7 +50,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue(\App\Filament\Resources\UserResource::canCreate());
     }
 
-    /** @test */
+    #[Test]
     public function admin_user_from_seeder_can_access_user_resource(): void
     {
         $adminUser = User::where('email', 'admin@example.com')->first();
@@ -62,7 +63,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue(\App\Filament\Resources\UserResource::canCreate());
     }
 
-    /** @test */
+    #[Test]
     public function admin_cannot_delete_themselves_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -72,7 +73,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($admin->can('delete', $admin));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_delete_other_users_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -85,7 +86,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('delete', $otherUser));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_delete_any_users_via_policy(): void
     {
         $user = User::factory()->create();
@@ -98,7 +99,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('delete', $user)); // Can't even delete self
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_view_any_users_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -107,7 +108,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('viewAny', User::class));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_view_any_users_via_policy(): void
     {
         $user = User::factory()->create();
@@ -116,7 +117,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('viewAny', User::class));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_create_users_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -125,7 +126,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('create', User::class));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_create_users_via_policy(): void
     {
         $user = User::factory()->create();
@@ -134,7 +135,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('create', User::class));
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_update_users_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -146,7 +147,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('update', $admin)); // Can update self
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_update_users_via_policy(): void
     {
         $user = User::factory()->create();
@@ -158,7 +159,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('update', $user)); // Can't even update self
     }
 
-    /** @test */
+    #[Test]
     public function admin_can_view_specific_users_via_policy(): void
     {
         $admin = User::factory()->create();
@@ -170,7 +171,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('view', $admin));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_cannot_view_specific_users_via_policy(): void
     {
         $user = User::factory()->create();
@@ -182,7 +183,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('view', $user));
     }
 
-    /** @test */
+    #[Test]
     public function policy_prevents_force_delete_of_self(): void
     {
         $admin = User::factory()->create();
@@ -191,7 +192,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($admin->can('forceDelete', $admin));
     }
 
-    /** @test */
+    #[Test]
     public function policy_allows_force_delete_of_others_for_admin(): void
     {
         $admin = User::factory()->create();
@@ -202,7 +203,7 @@ class UserResourceTest extends TestCase
         $this->assertTrue($admin->can('forceDelete', $otherUser));
     }
 
-    /** @test */
+    #[Test]
     public function policy_prevents_restore_for_non_admin(): void
     {
         $user = User::factory()->create();
@@ -213,7 +214,7 @@ class UserResourceTest extends TestCase
         $this->assertFalse($user->can('restore', $otherUser));
     }
 
-    /** @test */
+    #[Test]
     public function policy_allows_restore_for_admin(): void
     {
         $admin = User::factory()->create();

@@ -6,6 +6,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class AdminPanelAccessTest extends TestCase
@@ -20,6 +21,7 @@ class AdminPanelAccessTest extends TestCase
         $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
     }
 
+    #[Test]
     public function test_guest_cannot_access_admin_panel(): void
     {
         $response = $this->get('/admin');
@@ -27,6 +29,7 @@ class AdminPanelAccessTest extends TestCase
         $response->assertRedirect('/admin/login');
     }
 
+    #[Test]
     public function test_user_without_permission_cannot_access_admin_panel(): void
     {
         $user = User::factory()->create();
@@ -38,6 +41,7 @@ class AdminPanelAccessTest extends TestCase
         $response->assertStatus(403);
     }
 
+    #[Test]
     public function test_user_with_admin_role_can_access_admin_panel(): void
     {
         $user = User::factory()->create();
@@ -59,6 +63,7 @@ class AdminPanelAccessTest extends TestCase
         $this->assertGreaterThan(0, $user->getAllPermissions()->count(), 'User has admin permissions');
     }
 
+    #[Test]
     public function test_admin_user_from_seeder_can_access_admin_panel(): void
     {
         // Get the admin user created by the seeder
@@ -74,6 +79,7 @@ class AdminPanelAccessTest extends TestCase
         $this->assertTrue($adminUser->can('access admin panel'));
     }
 
+    #[Test]
     public function test_user_with_direct_permission_can_access_admin_panel(): void
     {
         $user = User::factory()->create();
@@ -87,6 +93,7 @@ class AdminPanelAccessTest extends TestCase
         $this->assertTrue($user->hasPermissionTo('access admin panel'));
     }
 
+    #[Test]
     public function test_user_without_any_permissions_gets_forbidden(): void
     {
         $user = User::factory()->create();
@@ -97,6 +104,7 @@ class AdminPanelAccessTest extends TestCase
         $response->assertStatus(403);
     }
 
+    #[Test]
     public function test_admin_panel_login_page_accessible(): void
     {
         $response = $this->get('/admin/login');
