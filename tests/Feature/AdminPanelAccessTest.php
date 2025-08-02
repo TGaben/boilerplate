@@ -105,11 +105,11 @@ class AdminPanelAccessTest extends TestCase
         // Check for login page elements that are always present regardless of locale
         $content = $response->getContent();
         $this->assertStringContainsString('admin', (string) $content, 'Login page contains admin-related content');
-        
+
         // Check for essential form elements that must be present
         $this->assertTrue(
             str_contains($content, 'type="email"') || str_contains($content, 'email'),
-            'Login page should contain email input field'
+            'Login page should contain email input field',
         );
     }
 }
