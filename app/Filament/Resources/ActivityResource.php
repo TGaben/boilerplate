@@ -16,6 +16,10 @@ class ActivityResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'description';
 
+    protected static ?array $globalSearchColumns = ['description', 'subject_type'];
+
+    protected static bool $isGlobalSearchEnabled = false;
+
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     protected static ?string $navigationGroup = 'Adminisztráció';
@@ -95,7 +99,8 @@ class ActivityResource extends Resource
             ])
             ->defaultSort('created_at', 'desc')
             ->heading(__('messages.Activity Log'))
-            ->description(__('messages.Activity Log Description'));
+            ->description(__('messages.Activity Log Description'))
+            ->searchable(false);
     }
 
     public static function getRelations(): array
