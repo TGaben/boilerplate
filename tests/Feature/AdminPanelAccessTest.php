@@ -53,10 +53,10 @@ class AdminPanelAccessTest extends TestCase
         // For now, we verify the user authentication and permission setup works
         $this->assertTrue($user->hasRole('admin'));
         $this->assertTrue($user->can('access admin panel'));
-        
+
         // Note: In production, this should work properly with proper Filament Shield config
         // For CI/testing purposes, we're verifying the permission logic works
-        $this->assertTrue(true, 'User has admin role and proper permissions');
+        $this->assertGreaterThan(0, $user->getAllPermissions()->count(), 'User has admin permissions');
     }
 
     public function test_admin_user_from_seeder_can_access_admin_panel(): void
@@ -82,7 +82,7 @@ class AdminPanelAccessTest extends TestCase
         // Verify direct permission assignment works
         $this->assertTrue($user->can('access admin panel'));
         $this->assertFalse($user->hasRole('admin')); // Should not have role, only permission
-        
+
         // Verify permission system works correctly
         $this->assertTrue($user->hasPermissionTo('access admin panel'));
     }

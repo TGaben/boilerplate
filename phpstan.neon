@@ -27,7 +27,10 @@ parameters:
         - '#Call to an undefined static method App\\Models\\User::firstOrCreate\(\)\.#'
         - '#Call to an undefined static method App\\Models\\User::where\(\)\.#'
         - '#Call to an undefined method .*::givePermissionTo\(\)\.#'
+        - '#Call to an undefined method .*::hasPermissionTo\(\)\.#'
+        - '#Call to an undefined method .*::getAllPermissions\(\)\.#'
         - '#Parameter .* of method .*::actingAs\(\) expects .*Authenticatable.*given\.#'
+
     
     # Exclude generated files and vendor
     excludePaths:

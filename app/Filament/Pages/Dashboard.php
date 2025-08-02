@@ -15,6 +15,6 @@ class Dashboard extends BaseDashboard
     public static function canAccess(): bool
     {
         // Allow access for all authenticated users for now
-        return auth()->check();
+        return \Illuminate\Support\Facades\Auth::check();
     }
 }
