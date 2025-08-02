@@ -18,13 +18,25 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $navigationLabel = 'Permissions';
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Permissions');
+    }
 
-    protected static ?string $modelLabel = 'Permission';
+    public static function getModelLabel(): string
+    {
+        return __('messages.Permission');
+    }
 
-    protected static ?string $pluralModelLabel = 'Permissions';
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Permissions');
+    }
 
-    protected static ?string $navigationGroup = 'Administration';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.Administration');
+    }
 
     protected static ?int $navigationSort = 30;
 
@@ -32,18 +44,18 @@ class PermissionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Permission Details')
+                Forms\Components\Section::make(__('messages.Permission Details'))
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255)
-                            ->label('Permission Name')
+                            ->label(__('messages.Permission Name'))
                             ->disabled(), // Read-only for security
 
                         Forms\Components\TextInput::make('guard_name')
                             ->required()
                             ->maxLength(255)
-                            ->label('Guard Name')
+                            ->label(__('messages.Guard Name'))
                             ->default('web')
                             ->disabled(), // Read-only for security
                     ])
@@ -56,18 +68,18 @@ class PermissionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->label('ID')
+                    ->label(__('messages.ID'))
                     ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Permission Name')
+                    ->label(__('messages.Permission Name'))
                     ->sortable()
                     ->searchable()
                     ->copyable(),
 
                 Tables\Columns\TextColumn::make('guard_name')
-                    ->label('Guard')
+                    ->label(__('messages.Guard'))
                     ->sortable()
                     ->badge()
                     ->color('success'),

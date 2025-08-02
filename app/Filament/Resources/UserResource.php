@@ -21,13 +21,25 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationLabel = 'Users';
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Users');
+    }
 
-    protected static ?string $modelLabel = 'User';
+    public static function getModelLabel(): string
+    {
+        return __('messages.User');
+    }
 
-    protected static ?string $pluralModelLabel = 'Users';
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Users');
+    }
 
-    protected static ?string $navigationGroup = 'Administration';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.Administration');
+    }
 
     protected static ?int $navigationSort = 10;
 
@@ -40,17 +52,17 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255)
-                            ->label('Full Name'),
+                            ->label(__('messages.Name')),
 
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
                             ->unique(User::class, 'email', ignoreRecord: true)
                             ->maxLength(255)
-                            ->label('Email Address'),
+                            ->label(__('messages.Email')),
 
                         Forms\Components\DateTimePicker::make('email_verified_at')
-                            ->label('Email Verified At')
+                            ->label(__('messages.Email Verified At'))
                             ->nullable(),
 
                         Forms\Components\TextInput::make('password')
@@ -59,7 +71,7 @@ class UserResource extends Resource
                             ->dehydrated(fn (?string $state): bool => filled($state))
                             ->required(fn (string $operation): bool => $operation === 'create')
                             ->maxLength(255)
-                            ->label('Password')
+                            ->label(__('messages.Password'))
                             ->helperText('Leave empty to keep current password when editing.'),
 
                         Forms\Components\Select::make('roles')
@@ -106,18 +118,18 @@ class UserResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('messages.Name'))
                     ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('messages.Email'))
                     ->sortable()
                     ->searchable()
                     ->copyable(),
 
                 Tables\Columns\TextColumn::make('roles.name')
-                    ->label('Roles')
+                    ->label(__('messages.Roles'))
                     ->badge()
                     ->separator(',')
                     ->color(fn (string $state): string => match ($state) {
@@ -127,7 +139,7 @@ class UserResource extends Resource
                     }),
 
                 Tables\Columns\IconColumn::make('email_verified_at')
-                    ->label('Verified')
+                    ->label(__('messages.Email Verified At'))
                     ->boolean()
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
@@ -135,13 +147,13 @@ class UserResource extends Resource
                     ->falseColor('danger'),
 
                 Tables\Columns\TextColumn::make('last_login_at')
-                    ->label('Last Login')
+                    ->label(__('messages.Last Login'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Created')
+                    ->label(__('messages.Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(),

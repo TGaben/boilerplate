@@ -19,13 +19,25 @@ class RoleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
 
-    protected static ?string $navigationLabel = 'Roles';
+    public static function getNavigationLabel(): string
+    {
+        return __('messages.Roles');
+    }
 
-    protected static ?string $modelLabel = 'Role';
+    public static function getModelLabel(): string
+    {
+        return __('messages.Role');
+    }
 
-    protected static ?string $pluralModelLabel = 'Roles';
+    public static function getPluralModelLabel(): string
+    {
+        return __('messages.Roles');
+    }
 
-    protected static ?string $navigationGroup = 'Administration';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('messages.Administration');
+    }
 
     protected static ?int $navigationSort = 20;
 
@@ -33,30 +45,30 @@ class RoleResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Role Information')
+                Forms\Components\Section::make(__('messages.Role Information'))
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255)
                             ->unique(Role::class, 'name', ignoreRecord: true)
-                            ->label('Role Name')
-                            ->helperText('The name of the role (e.g., admin, user, moderator).'),
+                            ->label(__('messages.Role Name'))
+                            ->helperText(__('messages.The name of the role (e.g., admin, user, moderator).')),
 
                         Forms\Components\TextInput::make('guard_name')
                             ->required()
                             ->maxLength(255)
                             ->default('web')
-                            ->label('Guard Name')
-                            ->helperText('The guard name this role belongs to.'),
+                            ->label(__('messages.Guard Name'))
+                            ->helperText(__('messages.The guard name this role belongs to.')),
                     ])
                     ->columns(2),
 
-                Forms\Components\Section::make('Permissions')
+                Forms\Components\Section::make(__('messages.Permissions'))
                     ->schema([
                         Forms\Components\CheckboxList::make('permissions')
                             ->relationship('permissions', 'name')
-                            ->label('Assign Permissions')
-                            ->helperText('Select the permissions this role should have.')
+                            ->label(__('messages.Assign Permissions'))
+                            ->helperText(__('messages.Select the permissions this role should have.'))
                             ->searchable()
                             ->bulkToggleable()
                             ->columns(2)
@@ -71,12 +83,12 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->label('ID')
+                    ->label(__('messages.ID'))
                     ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Role Name')
+                    ->label(__('messages.Role Name'))
                     ->sortable()
                     ->searchable()
                     ->copyable()
@@ -88,20 +100,20 @@ class RoleResource extends Resource
                     }),
 
                 Tables\Columns\TextColumn::make('guard_name')
-                    ->label('Guard')
+                    ->label(__('messages.Guard'))
                     ->sortable()
                     ->badge()
                     ->color('secondary'),
 
                 Tables\Columns\TextColumn::make('permissions_count')
-                    ->label('Permissions')
+                    ->label(__('messages.Permissions'))
                     ->counts('permissions')
                     ->sortable()
                     ->badge()
                     ->color('info'),
 
                 Tables\Columns\TextColumn::make('users_count')
-                    ->label('Users')
+                    ->label(__('messages.Users'))
                     ->counts('users')
                     ->sortable()
                     ->badge()
