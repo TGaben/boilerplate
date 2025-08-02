@@ -83,6 +83,17 @@ return [
     'Export' => 'Exportálás',
     'Import' => 'Importálás',
 
+    // Dashboard
+    'Welcome to Admin Panel' => 'Üdvözöljük az Admin Panelen',
+    'Manage your Laravel Boilerplate application' => 'Laravel Boilerplate alkalmazás kezelése',
+    'Current User' => 'Jelenlegi felhasználó',
+    'Last Login' => 'Utolsó bejelentkezés',
+    'Quick Actions' => 'Gyors műveletek',
+    'First time' => 'Első alkalommal',
+    'Never' => 'Soha',
+    'Latest Registered Users' => 'Legutóbb regisztrált felhasználók',
+    'Recently registered users in the system' => 'Rendszerben nemrég regisztrált felhasználók',
+
     // System Settings
     'System Settings' => 'Rendszerbeállítások',
     'Coming soon...' => 'Hamarosan...',

@@ -17,23 +17,23 @@ class SystemStats extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::count())
-                ->description('Registered users in the system')
+            Stat::make(__('messages.Total Users'), User::count())
+                ->description(__('messages.Registered users in the system'))
                 ->descriptionIcon('heroicon-m-users')
                 ->color('success'),
 
-            Stat::make('Admin Users', User::role('admin')->count())
-                ->description('Users with admin privileges')
+            Stat::make(__('messages.Admin Users'), User::role('admin')->count())
+                ->description(__('messages.Users with admin privileges'))
                 ->descriptionIcon('heroicon-m-shield-check')
                 ->color('warning'),
 
-            Stat::make('Total Roles', Role::count())
-                ->description('Available user roles')
+            Stat::make(__('messages.Total Roles'), Role::count())
+                ->description(__('messages.Available user roles'))
                 ->descriptionIcon('heroicon-m-user-group')
                 ->color('info'),
 
-            Stat::make('Total Permissions', Permission::count())
-                ->description('System permissions')
+            Stat::make(__('messages.Total Permissions'), Permission::count())
+                ->description(__('messages.System permissions'))
                 ->descriptionIcon('heroicon-m-key')
                 ->color('gray'),
         ];

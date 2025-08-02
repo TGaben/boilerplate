@@ -21,17 +21,17 @@ class LatestUsers extends BaseWidget
             ->query(fn () => User::query()->latest()->take(10))
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('messages.Name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('messages.Email'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('roles.name')
-                    ->label('Roles')
+                    ->label(__('messages.Roles'))
                     ->badge()
                     ->separator(',')
                     ->color(fn (string $state): string => match ($state) {
@@ -41,18 +41,18 @@ class LatestUsers extends BaseWidget
                     }),
 
                 Tables\Columns\TextColumn::make('last_login_at')
-                    ->label('Last Login')
+                    ->label(__('messages.Last Login'))
                     ->dateTime()
                     ->sortable()
-                    ->placeholder('Never'),
+                    ->placeholder(__('messages.Never')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Registered')
+                    ->label(__('messages.Registered'))
                     ->dateTime()
                     ->sortable(),
             ])
-            ->heading('Latest Registered Users')
-            ->description('Recently registered users in the system')
+            ->heading(__('messages.Latest Registered Users'))
+            ->description(__('messages.Recently registered users in the system'))
             ->defaultSort('created_at', 'desc')
             ->paginated(false);
     }

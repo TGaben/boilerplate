@@ -83,6 +83,17 @@ return [
     'Export' => 'Export',
     'Import' => 'Import',
 
+    // Dashboard
+    'Welcome to Admin Panel' => 'Welcome to Admin Panel',
+    'Manage your Laravel Boilerplate application' => 'Manage your Laravel Boilerplate application',
+    'Current User' => 'Current User',
+    'Last Login' => 'Last Login',
+    'Quick Actions' => 'Quick Actions',
+    'First time' => 'First time',
+    'Never' => 'Never',
+    'Latest Registered Users' => 'Latest Registered Users',
+    'Recently registered users in the system' => 'Recently registered users in the system',
+
     // System Settings
     'System Settings' => 'System Settings',
     'Coming soon...' => 'Coming soon...',
