@@ -27,7 +27,7 @@ class LanguageController extends Controller
         // Store the language in session
         $sessionKey = config('languages.session_key', 'locale');
         Session::put($sessionKey, $language);
-        
+
         // Force session save immediately
         Session::save();
 

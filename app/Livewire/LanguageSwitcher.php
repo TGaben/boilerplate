@@ -11,7 +11,7 @@ use Livewire\Component;
 class LanguageSwitcher extends Component
 {
     public string $currentLanguage;
-    
+
     public function mount(): void
     {
         $this->currentLanguage = App::getLocale();
@@ -25,6 +25,7 @@ class LanguageSwitcher extends Component
         // Validate the language parameter
         if (! in_array($language, $availableLanguages, true)) {
             $this->addError('language', 'Language not supported.');
+
             return;
         }
 
