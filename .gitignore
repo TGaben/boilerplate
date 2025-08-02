@@ -5,6 +5,8 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+.php-cs-fixer.cache
+phpstan-baseline.neon
 /.fleet
 /.idea
 /.nova

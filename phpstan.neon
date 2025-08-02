@@ -1,0 +1,32 @@
+parameters:
+    level: 8
+    paths:
+        - app
+        - config
+        - database
+        - routes
+        - tests
+    
+    # Laravel specific configurations
+    bootstrapFiles:
+        - vendor/autoload.php
+    
+    # Ignore common Laravel patterns and env() casting issues
+    ignoreErrors:
+        - '#Cannot cast mixed to (string|int)\.#'
+        - '#Binary operation "\." between .* and .* results in an error\.#'
+    
+    # Exclude generated files and vendor
+    excludePaths:
+        - vendor
+        - node_modules (?)
+        - storage
+        - bootstrap/cache
+        - *.blade.php
+    
+    # Additional rules for better analysis
+    checkNullables: true
+    checkThisOnly: false
+    checkUnionTypes: true
+    checkExplicitMixed: true
+    checkFunctionNameCase: true

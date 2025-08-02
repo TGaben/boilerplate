@@ -12,11 +12,13 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "friendsofphp/php-cs-fixer": "^3.64",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^11.5.3"
     },
     "autoload": {
@@ -54,6 +56,15 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "cs-fix": [
+            "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        ],
+        "cs-check": [
+            "vendor/bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes"
+        ],
+        "stan": [
+            "vendor/bin/phpstan analyse"
         ]
     },
     "extra": {
