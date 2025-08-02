@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources\ActivityResource\Pages;
 
 use App\Filament\Resources\ActivityResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListActivities extends ListRecords
@@ -15,7 +14,7 @@ class ListActivities extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            // No create action for read-only activity log
         ];
     }
 }

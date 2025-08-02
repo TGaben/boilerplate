@@ -131,4 +131,8 @@ return [
     'Record ID' => 'Record ID',
     'Date' => 'Date',
     'System' => 'System',
+    'Activity Details' => 'Activity Details',
+    'Changed Data' => 'Changed Data',
+    'New Values' => 'New Values',
+    'Old Values' => 'Old Values',
 ];

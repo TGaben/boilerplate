@@ -131,4 +131,8 @@ return [
     'Record ID' => 'Rekord azonosító',
     'Date' => 'Dátum',
     'System' => 'Rendszer',
+    'Activity Details' => 'Tevékenység részletei',
+    'Changed Data' => 'Változott adatok',
+    'New Values' => 'Új értékek',
+    'Old Values' => 'Régi értékek',
 ];
