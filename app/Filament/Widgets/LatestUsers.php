@@ -18,9 +18,7 @@ class LatestUsers extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(
-                User::query()->latest()->take(10),
-            )
+            ->query(fn () => User::query()->latest()->take(10))
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
