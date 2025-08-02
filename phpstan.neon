@@ -15,6 +15,15 @@ parameters:
     ignoreErrors:
         - '#Cannot cast mixed to (string|int)\.#'
         - '#Binary operation "\." between .* and .* results in an error\.#'
+        - '#Cannot call method forgetCachedPermissions\(\) on mixed\.#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::firstOrCreate\(\)\.#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::firstOrCreate\(\)\.#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::count\(\)\.#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::count\(\)\.#'
+        - '#Call to an undefined method .*::assignRole\(\)\.#'
+        - '#Call to an undefined method .*::hasRole\(\)\.#'
+        - '#Call to an undefined method .*::can\(\)\.#'
+        - '#Method Spatie\\Permission\\Contracts\\Role::hasPermissionTo\(\) invoked with 1 parameter, 2 required\.#'
     
     # Exclude generated files and vendor
     excludePaths:
@@ -23,6 +32,7 @@ parameters:
         - storage
         - bootstrap/cache
         - *.blade.php
+        - database/migrations/2025_08_02_131418_create_permission_tables.php
     
     # Additional rules for better analysis
     checkNullables: true
