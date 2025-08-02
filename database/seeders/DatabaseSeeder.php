@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::factory()->createQuietly([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'profile_photo_path' => null,

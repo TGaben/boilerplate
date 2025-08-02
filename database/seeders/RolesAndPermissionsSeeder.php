@@ -23,6 +23,14 @@ class RolesAndPermissionsSeeder extends Seeder
             'access admin panel',
             'manage users',
             'view reports',
+            // Filament Shield style permissions for UserResource
+            'view_any_user',
+            'view_user',
+            'create_user',
+            'update_user',
+            'delete_user',
+            'restore_user',
+            'force_delete_user',
         ];
 
         foreach ($permissions as $permission) {
