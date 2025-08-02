@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'profile_photo_path' => null,
+            'last_login_at' => now()->subDays(7), // Last login 7 days ago
         ]);
     }
 }
