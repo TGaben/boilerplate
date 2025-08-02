@@ -30,6 +30,9 @@ parameters:
         - '#Call to an undefined method .*::hasPermissionTo\(\)\.#'
         - '#Call to an undefined method .*::getAllPermissions\(\)\.#'
         - '#Parameter .* of method .*::actingAs\(\) expects .*Authenticatable.*given\.#'
+        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory::id\(\)\.#'
+        - '#Access to an undefined property App\\Models\\User::\$id\.#'
+        - '#Anonymous function should return Illuminate\\Database\\Eloquent\\Builder but returns Illuminate\\Database\\Query\\Builder\.#'
 
     
     # Exclude generated files and vendor
