@@ -47,6 +47,9 @@ class RolesAndPermissionsSeeder extends Seeder
             // Filament Shield style permissions for PermissionResource (view-only)
             'view_any_permission',
             'view_permission',
+            // Filament Shield style permissions for ActivityResource (view-only)
+            'view_any_activity',
+            'view_activity',
         ];
 
         foreach ($permissions as $permission) {

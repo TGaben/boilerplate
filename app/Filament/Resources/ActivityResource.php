@@ -114,23 +114,41 @@ class ActivityResource extends Resource
         ];
     }
 
+    public static function canViewAny(): bool
+    {
+        // Try Filament Shield permission first, fall back to admin role check
+        return auth()->user()?->can('view_any_activity') ??
+               auth()->user()?->hasRole('admin') ?? false;
+    }
+
+    public static function canView(\Illuminate\Database\Eloquent\Model $record): bool
+    {
+        // Try Filament Shield permission first, fall back to admin role check
+        return auth()->user()?->can('view_activity') ??
+               auth()->user()?->hasRole('admin') ?? false;
+    }
+
     public static function canCreate(): bool
     {
+        // Activity logs are read-only
         return false;
     }
 
-    public static function canEdit($record): bool
+    public static function canEdit(\Illuminate\Database\Eloquent\Model $record): bool
     {
+        // Activity logs are read-only
         return false;
     }
 
-    public static function canDelete($record): bool
+    public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
     {
+        // Activity logs are read-only
         return false;
     }
 
     public static function canDeleteAny(): bool
     {
+        // Activity logs are read-only
         return false;
     }
 

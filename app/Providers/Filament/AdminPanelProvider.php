@@ -31,7 +31,6 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo.svg'))
             ->brandLogoHeight('2rem')
             ->favicon(asset('favicon.ico'))
-            ->login()
             ->colors([
                 'primary' => Color::Blue,
                 'gray' => Color::Slate,
@@ -66,6 +65,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->authGuard('web')
+            ->login()
+            ->authPasswordBroker('users');
     }
 }
