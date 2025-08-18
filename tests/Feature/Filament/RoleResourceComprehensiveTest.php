@@ -38,18 +38,22 @@ class RoleResourceComprehensiveTest extends TestCase
         $this->adminRole = Role::where('name', 'admin')->first();
         $this->userRole = Role::where('name', 'user')->first();
 
-        // Create admin user
-        $this->adminUser = User::factory()->create([
+                // Create admin user
+        /** @var User $adminUser */
+        $adminUser = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@test.com',
         ]);
+        $this->adminUser = $adminUser;
         $this->adminUser->assignRole($this->adminRole);
-
+        
         // Create regular user
-        $this->regularUser = User::factory()->create([
+        /** @var User $regularUser */
+        $regularUser = User::factory()->create([
             'name' => 'Regular User',
             'email' => 'user@test.com',
         ]);
+        $this->regularUser = $regularUser;
         $this->regularUser->assignRole($this->userRole);
 
         // Force refresh permission cache
@@ -136,6 +140,7 @@ class RoleResourceComprehensiveTest extends TestCase
     public function test_role_can_be_assigned_to_users(): void
     {
         $role = Role::create(['name' => 'test_role', 'guard_name' => 'web']);
+        /** @var User $user */
         $user = User::factory()->create();
 
         $user->assignRole($role);
@@ -236,7 +241,9 @@ class RoleResourceComprehensiveTest extends TestCase
     public function test_multiple_users_can_have_same_role(): void
     {
         $role = Role::create(['name' => 'shared_role', 'guard_name' => 'web']);
+        /** @var User $user1 */
         $user1 = User::factory()->create();
+        /** @var User $user2 */
         $user2 = User::factory()->create();
 
         $user1->assignRole($role);

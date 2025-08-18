@@ -38,18 +38,22 @@ class AdminDashboardComprehensiveTest extends TestCase
         $this->adminRole = Role::where('name', 'admin')->first();
         $this->userRole = Role::where('name', 'user')->first();
 
-        // Create admin user
-        $this->adminUser = User::factory()->create([
+                // Create admin user
+        /** @var User $adminUser */
+        $adminUser = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@test.com',
         ]);
+        $this->adminUser = $adminUser;
         $this->adminUser->assignRole($this->adminRole);
-
+        
         // Create regular user
-        $this->regularUser = User::factory()->create([
-            'name' => 'Regular User',
+        /** @var User $regularUser */
+        $regularUser = User::factory()->create([
+            'name' => 'Regular User', 
             'email' => 'user@test.com',
         ]);
+        $this->regularUser = $regularUser;
         $this->regularUser->assignRole($this->userRole);
 
         // Force refresh permission cache
@@ -234,11 +238,11 @@ class AdminDashboardComprehensiveTest extends TestCase
     {
         $this->actingAs($this->adminUser);
 
-        \DB::enableQueryLog();
+        \Illuminate\Support\Facades\DB::enableQueryLog();
 
         $response = $this->get('/admin');
 
-        $queries = \DB::getQueryLog();
+        $queries = \Illuminate\Support\Facades\DB::getQueryLog();
 
         $response->assertOk();
         // Should not have excessive database queries
@@ -273,9 +277,11 @@ class AdminDashboardComprehensiveTest extends TestCase
     public function test_dashboard_handles_concurrent_users(): void
     {
         // Create multiple admin users
+        /** @var User $admin1 */
         $admin1 = User::factory()->create();
         $admin1->assignRole($this->adminRole);
 
+        /** @var User $admin2 */
         $admin2 = User::factory()->create();
         $admin2->assignRole($this->adminRole);
 

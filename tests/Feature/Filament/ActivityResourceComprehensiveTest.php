@@ -38,18 +38,22 @@ class ActivityResourceComprehensiveTest extends TestCase
         $this->adminRole = Role::where('name', 'admin')->first();
         $this->userRole = Role::where('name', 'user')->first();
 
-        // Create admin user
-        $this->adminUser = User::factory()->create([
+                // Create admin user
+        /** @var User $adminUser */
+        $adminUser = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@test.com',
         ]);
+        $this->adminUser = $adminUser;
         $this->adminUser->assignRole($this->adminRole);
-
+        
         // Create regular user
-        $this->regularUser = User::factory()->create([
-            'name' => 'Regular User',
+        /** @var User $regularUser */
+        $regularUser = User::factory()->create([
+            'name' => 'Regular User', 
             'email' => 'user@test.com',
         ]);
+        $this->regularUser = $regularUser;
         $this->regularUser->assignRole($this->userRole);
 
         // Force refresh permission cache
@@ -137,6 +141,7 @@ class ActivityResourceComprehensiveTest extends TestCase
         $this->actingAs($this->adminUser);
 
         // Create a user and modify it to trigger logging
+        /** @var User $user */
         $user = User::factory()->create(['name' => 'Original Name']);
 
         // Update the user to trigger activity log
@@ -290,6 +295,7 @@ class ActivityResourceComprehensiveTest extends TestCase
     {
         $this->actingAs($this->adminUser);
 
+        /** @var User $user */
         $user = User::factory()->create();
 
         // Clear any existing activities for this user first

@@ -97,6 +97,7 @@ class UserResourceComprehensiveTest extends TestCase
     {
         $this->actingAs($this->adminUser);
 
+        /** @var User $testUser */
         $testUser = User::factory()->create();
 
         $response = $this->get("/admin/users/{$testUser->id}/edit");
@@ -119,6 +120,7 @@ class UserResourceComprehensiveTest extends TestCase
     {
         $this->actingAs($this->adminUser);
 
+        /** @var User $testUser */
         $testUser = User::factory()->create();
         $testUser->assignRole($this->adminRole);
 
@@ -146,6 +148,7 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_user_factory_works(): void
     {
+        /** @var User $user */
         $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -161,9 +164,9 @@ class UserResourceComprehensiveTest extends TestCase
     {
         $user = new User();
 
-        $this->assertTrue(method_exists($user, 'hasRole'));
-        $this->assertTrue(method_exists($user, 'assignRole'));
-        $this->assertTrue(method_exists($user, 'getActivitylogOptions'));
+        // Test that traits are properly included
+        $this->assertTrue(in_array('Spatie\Permission\Traits\HasRoles', class_uses_recursive($user)));
+        $this->assertTrue(in_array('Spatie\Activitylog\Traits\LogsActivity', class_uses_recursive($user)));
     }
 
     public function test_user_activity_logging_configuration(): void
@@ -176,16 +179,18 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_user_password_is_hashed(): void
     {
+        /** @var User $user */
         $user = User::factory()->create([
             'password' => 'plaintext-password',
         ]);
 
         $this->assertNotEquals('plaintext-password', $user->password);
-        $this->assertTrue(\Hash::check('plaintext-password', $user->password));
+        $this->assertTrue(\Illuminate\Support\Facades\Hash::check('plaintext-password', $user->password));
     }
 
     public function test_user_roles_relationship(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
         $user->assignRole($this->adminRole);
 
@@ -194,7 +199,9 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_multiple_users_can_have_same_role(): void
     {
+        /** @var User $user1 */
         $user1 = User::factory()->create();
+        /** @var User $user2 */
         $user2 = User::factory()->create();
 
         $user1->assignRole($this->adminRole);
@@ -206,6 +213,7 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_user_can_have_multiple_roles(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $user->assignRole([$this->adminRole, $this->userRole]);
@@ -216,6 +224,7 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_removing_user_role_works(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
         $user->assignRole($this->adminRole);
 
@@ -228,6 +237,7 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_user_permissions_through_roles(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
         $user->assignRole($this->adminRole);
 
@@ -245,6 +255,7 @@ class UserResourceComprehensiveTest extends TestCase
 
     public function test_user_timestamps_exist(): void
     {
+        /** @var User $user */
         $user = User::factory()->create();
 
         $this->assertNotNull($user->created_at);

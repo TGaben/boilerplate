@@ -32,9 +32,11 @@ parameters:
         - '#Parameter .* of method .*::actingAs\(\) expects .*Authenticatable.*given\.#'
         - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory::id\(\)\.#'
         - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory::user\(\)\.#'
-        - '#Access to an undefined property App\\Models\\User::\$id\.#'
+        - '#Access to an undefined property App\\Models\\User::\$(id|password|roles|created_at|updated_at|name)\.#'
+        - '#Access to an undefined property Spatie\\Permission\\Models\\Role::\$users\.#'
         - '#Anonymous function should return Illuminate\\Database\\Eloquent\\Builder but returns Illuminate\\Database\\Query\\Builder\.#'
         - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::where\(\)\.#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::where\(\)\.#'
         - '#Call to an undefined static method App\\Models\\User::count\(\)\.#'
         - '#Call to an undefined static method App\\Models\\User::role\(\)\.#'
         
@@ -68,12 +70,14 @@ parameters:
         - '#Parameter \#1 \$user of method App\\Policies\\.*::.*\(\) expects App\\Models\\User, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.* given\.#'
         
         # Ignore Activity model static method calls (Spatie ActivityLog Eloquent model)
-        - '#Call to an undefined static method Spatie\\Activitylog\\Models\\Activity::(where|first|truncate)\(\)\.#'
+        - '#Call to an undefined static method Spatie\\Activitylog\\Models\\Activity::(where|first|truncate|create)\(\)\.#'
         - '#Parameter \#1 \$array of function array_keys expects array, mixed given\.#'
         - '#Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session::.* expects .* mixed given\.#'
         - '#Parameter \#1 \$locale of static method Illuminate\\Support\\Facades\\App::setLocale\(\) expects string, mixed given\.#'
         - '#Method App\\Http\\Controllers\\LanguageController::.* should return .* but returns mixed\.#'
         - '#Parameter \#2 \$array of method PHPUnit\\Framework\\Assert::assertArrayHasKey\(\) expects .* mixed given\.#'
+        - '#Cannot call method token\(\) on mixed\.#'
+        - '#Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert::assertStringContainsString\(\) expects string, string\|false given\.#'
 
     
     # Exclude generated files and vendor
