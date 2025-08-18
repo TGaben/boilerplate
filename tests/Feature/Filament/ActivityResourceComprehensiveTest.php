@@ -38,7 +38,7 @@ class ActivityResourceComprehensiveTest extends TestCase
         $this->adminRole = Role::where('name', 'admin')->first();
         $this->userRole = Role::where('name', 'user')->first();
 
-                // Create admin user
+        // Create admin user
         /** @var User $adminUser */
         $adminUser = User::factory()->create([
             'name' => 'Admin User',
@@ -46,11 +46,11 @@ class ActivityResourceComprehensiveTest extends TestCase
         ]);
         $this->adminUser = $adminUser;
         $this->adminUser->assignRole($this->adminRole);
-        
+
         // Create regular user
         /** @var User $regularUser */
         $regularUser = User::factory()->create([
-            'name' => 'Regular User', 
+            'name' => 'Regular User',
             'email' => 'user@test.com',
         ]);
         $this->regularUser = $regularUser;
