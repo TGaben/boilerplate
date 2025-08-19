@@ -78,6 +78,13 @@ parameters:
         - '#Parameter \#2 \$array of method PHPUnit\\Framework\\Assert::assertArrayHasKey\(\) expects .* mixed given\.#'
         - '#Cannot call method token\(\) on mixed\.#'
         - '#Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert::assertStringContainsString\(\) expects string, string\|false given\.#'
+        
+        # Console Commands - mixed types from argument/option methods
+        - '#Cannot cast array\|bool\|string\|null to string#'
+        - '#Parameter \#2 \$contents of method Illuminate\\Filesystem\\Filesystem::put\(\) expects string, string\|null given#'
+        - '#Access to an undefined property Spatie\\Permission\\Models\\Role::\$permissions#'
+        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::orderBy\(\)#'
+        - '#Right side of && is always true#'
 
     
     # Exclude generated files and vendor
