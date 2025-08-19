@@ -131,7 +131,24 @@ refactor(permission): szerepkör ellenőrzési logika optimalizálása
 
 ## ✅ Minőségi Szabványok
 
-### Beküldés Előtt
+### ⚡ **Quality Check Script (Ajánlott Módszer)**
+
+A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőrzéseknek:
+
+```bash
+# Teljes minőségbiztosítási ellenőrzés - FÜR MINDEN COMMIT ELŐTT!
+./scripts/quality-check.sh
+
+# Csak kódminőség ellenőrzés, tesztek kihagyása (gyorsabb)
+./scripts/quality-check.sh --skip-tests
+
+# Csak kódstílus javítás
+./scripts/quality-check.sh --fix-only
+```
+
+> 🎯 **Best Practice:** Futtasd minden commit előtt, hogy elkerüld a CI/CD pipeline hibákat!
+
+### 🔧 **Manuális Ellenőrzések**
 
 **Minden hozzájárulásnak át kell mennie ezeken a minőségi kapukon:**
 
@@ -142,7 +159,8 @@ refactor(permission): szerepkör ellenőrzési logika optimalizálása
 
 2. **Kódstílus**: PSR-12-t kell követnie
    ```bash
-   ./vendor/bin/sail composer lint
+   ./vendor/bin/sail composer lint      # Ellenőrzés
+   ./vendor/bin/sail pint               # Automatikus javítás
    ```
 
 3. **Statikus Elemzés**: PHPStan Level 5-ön át kell mennie
@@ -151,6 +169,21 @@ refactor(permission): szerepkör ellenőrzési logika optimalizálása
    ```
 
 4. **Nem Breaking Changes**: Hacsak nem beszéltük meg kifejezetten
+
+### 📋 **Ajánlott Munkafolyamat**
+
+```bash
+# 1. Fejlesztés/implementáció
+# ... kód írása ...
+
+# 2. Quality check futtatása
+./scripts/quality-check.sh
+
+# 3. Ha minden zöld, akkor commit & push
+git add .
+git commit -m "feat: új funkció hozzáadása"
+git push origin feature/branch-nev
+```
 
 ### Tesztek Írása
 
@@ -184,6 +217,10 @@ refactor(permission): szerepkör ellenőrzési logika optimalizálása
 
 2. **Futtasd le az összes minőségi ellenőrzést:**
    ```bash
+   # Ajánlott: Quality check script használata
+   ./scripts/quality-check.sh
+   
+   # Vagy manuálisan:
    ./vendor/bin/sail artisan test
    ./vendor/bin/sail composer lint
    ./vendor/bin/sail composer stan

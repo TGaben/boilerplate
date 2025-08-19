@@ -100,7 +100,29 @@ npm install
 
 > 🛡️ **Fontos:** Változtasd meg ezeket az adatokat azonnal production környezetben!
 
-## 🧪 Tesztek Futtatása
+## 🧪 Tesztek és Minőségbiztosítás
+
+### ⚡ **Quality Check Script (Ajánlott)**
+
+A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőrzéseknek:
+
+```bash
+# Teljes minőségbiztosítási ellenőrzés (tesztek + kódstílus + statikus elemzés)
+./scripts/quality-check.sh
+
+# Csak kódminőség ellenőrzés, tesztek kihagyása
+./scripts/quality-check.sh --skip-tests
+
+# Csak kódstílus javítás
+./scripts/quality-check.sh --fix-only
+
+# Súgó megtekintése
+./scripts/quality-check.sh --help
+```
+
+> 💡 **Tipp:** Használd ezt a scriptet minden commit előtt, hogy elkerüld a CI/CD pipeline hibákat!
+
+### 🔧 **Manuális Parancsok**
 
 ```bash
 # Minden teszt futtatása (161 teszt)
@@ -112,7 +134,10 @@ npm install
 # Kódstílus ellenőrzés
 ./vendor/bin/sail composer lint
 
-# Statikus elemzés
+# Kódstílus automatikus javítás
+./vendor/bin/sail pint
+
+# Statikus elemzés (PHPStan Level 5)
 ./vendor/bin/sail composer stan
 ```
 
