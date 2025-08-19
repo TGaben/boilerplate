@@ -158,9 +158,9 @@ A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőr
 ## 📚 Dokumentáció
 
 ### 📖 **Felhasználóknak**
-- [Architektúra Áttekintés](docs/architecture.hu.md) - Technikai döntések és indoklás
-- [Útmutató Gyűjtemény](docs/how-to-guides.hu.md) - Lépésről lépésre fejlesztési tutorialok
-- [Telepítési Útmutató](docs/deployment.hu.md) - Production telepítési instrukciók
+- [Architektúra Áttekintés](docs/architecture.md) - Technikai döntések és indoklás
+- [Útmutató Gyűjtemény](docs/how-to-guides.md) - Lépésről lépésre fejlesztési tutorialok **+ Új scaffolding parancsok! 🚀**
+- [Telepítési Útmutató](docs/deployment.md) - Production telepítési instrukciók
 
 ### 👥 **Közreműködőknek**
 - [Közreműködési Irányelvek](CONTRIBUTING.hu.md) - Hogyan járulj hozzá ehhez a projekthez

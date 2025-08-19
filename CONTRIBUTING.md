@@ -185,6 +185,26 @@ git commit -m "feat: új funkció hozzáadása"
 git push origin feature/branch-nev
 ```
 
+### 🚀 **Scaffolding Parancsok (ÚJ!)**
+
+**Gyorsítsd fel a fejlesztést az új scaffolding parancsokkal:**
+
+```bash
+# Teljes CRUD rendszer egyetlen paranccsal
+./vendor/bin/sail artisan make:boilerplate-resource Product
+
+# Új szerepkör alapértelmezett jogosultságokkal  
+./vendor/bin/sail artisan make:boilerplate-role editor
+
+# Jogosultságok szinkronizálása
+./vendor/bin/sail artisan boilerplate:setup-permissions
+
+# Teljes fresh install fejlesztéshez
+./vendor/bin/sail artisan boilerplate:fresh-install --seed
+```
+
+**📖 Részletes dokumentáció**: [Útmutató Gyűjtemény](docs/how-to-guides.md#🚀-boilerplate-scaffolding-parancsok-új)
+
 ### Tesztek Írása
 
 - **Írj teszteket** új funkciókhoz

@@ -4,6 +4,13 @@ Lépésről lépésre tutorialok a gyakori fejlesztési feladatokhoz a Laravel V
 
 ## 📋 Tartalomjegyzék
 
+### 🚀 Boilerplate Scaffolding Parancsok (Új!)
+- [Boilerplate Resource Generálása](#boilerplate-resource-generálása)
+- [Szerepkör Létrehozása Alapértelmezett Jogosultságokkal](#szerepkör-létrehozása-alapértelmezett-jogosultságokkal)
+- [Jogosultság Struktúra Szinkronizálása](#jogosultság-struktúra-szinkronizálása)
+- [Alkalmazás Teljes Újrainitiálása](#alkalmazás-teljes-újrainitiálása)
+
+### 🎛️ Manuális Fejlesztési Útmutatók
 - [Új Filament Resource Hozzáadása](#új-filament-resource-hozzáadása)
 - [Egyedi Szerepkörök és Jogosultságok Létrehozása](#egyedi-szerepkörök-és-jogosultságok-létrehozása)
 - [Egyedi Artisan Parancsok Futtatása](#egyedi-artisan-parancsok-futtatása)
@@ -12,6 +19,408 @@ Lépésről lépésre tutorialok a gyakori fejlesztési feladatokhoz a Laravel V
 - [Fejlesztői Környezet Beállítása](#fejlesztői-környezet-beállítása)
 - [Átfogó Tesztek Írása](#átfogó-tesztek-írása)
 - [Produkciós Telepítés](#produkciós-telepítés)
+
+---
+
+## 🚀 Boilerplate Resource Generálása
+
+### Teljes CRUD Rendszer Automatikus Létrehozása
+
+Az `make:boilerplate-resource` parancs egyetlen lépésben létrehoz minden szükséges fájlt egy teljes CRUD rendszerhez:
+
+```bash
+# Alap használat - teljes scaffold
+./vendor/bin/sail artisan make:boilerplate-resource Product
+
+# Opciók használata
+./vendor/bin/sail artisan make:boilerplate-resource Product --force --skip-tests --skip-seeder
+```
+
+#### Automatikusan Generált Fájlok
+
+A parancs a következő fájlokat hozza létre:
+
+1. **Model**: `app/Models/Product.php`
+   - Alap fillable mezők
+   - Spatie Activity Log integráció
+   - Timestamp kezelés
+
+2. **Migration**: `database/migrations/xxxx_create_products_table.php`
+   - ID, timestamps mezők
+   - Alapvető index-ek
+
+3. **Factory**: `database/factories/ProductFactory.php`
+   - Faker alapú teszt adatok
+   - Kapcsolódó modell referenciák
+
+4. **Policy**: `app/Policies/ProductPolicy.php`
+   - CRUD jogosultság ellenőrzések
+   - Admin és felhasználói szintű hozzáférés
+
+5. **Filament Resource**: `app/Filament/Resources/ProductResource.php`
+   - Alapvető form és table konfiguráció
+   - Search és filter funkciók
+   - Bulk actions
+
+6. **Seeder**: `database/seeders/ProductSeeder.php` (opcionális)
+   - Teszt adatok generálása
+   - Factory használat
+
+7. **Feature Test**: `tests/Feature/Filament/ProductResourceComprehensiveTest.php` (opcionális)
+   - CRUD műveletek tesztelése
+   - Jogosultság ellenőrzések
+   - Admin panel integráció tesztek
+
+#### Használat Után Szükséges Lépések
+
+```bash
+# 1. Migration futtatása
+./vendor/bin/sail artisan migrate
+
+# 2. Jogosultságok szinkronizálása (automatikusan felismeri az új modellt)
+./vendor/bin/sail artisan boilerplate:setup-permissions
+
+# 3. Seeder futtatása (ha létrehoztad)
+./vendor/bin/sail artisan db:seed --class=ProductSeeder
+
+# 4. Tesztek futtatása
+./vendor/bin/sail artisan test --filter=ProductResourceComprehensiveTest
+```
+
+#### Elérhető Opciók
+
+- `--force`: Felülírja a meglévő fájlokat
+- `--skip-tests`: Kihagyja a teszt fájlok generálását
+- `--skip-seeder`: Kihagyja a seeder létrehozását
+
+#### Példa Kimenet
+
+```
+📋 Model létrehozása...
+   ✅ Model létrehozása sikeres!
+📋 Migration létrehozása...
+   ✅ Migration létrehozása sikeres!
+📋 Factory létrehozása...
+   ✅ Factory létrehozása sikeres!
+📋 Policy létrehozása...
+   ✅ Policy létrehozása sikeres!
+📋 Filament Resource létrehozása...
+   ✅ Filament Resource létrehozása sikeres!
+📋 Seeder létrehozása...
+   ✅ Seeder létrehozása sikeres!
+📋 Tesztek létrehozása...
+   ✅ Tesztek létrehozása sikeres!
+
+✅ Boilerplate Resource sikeresen létrehozva!
+
+🚀 Következő lépések:
+1. Futtasd a migrációt: sail artisan migrate
+2. Szinkronizáld a jogosultságokat: sail artisan boilerplate:setup-permissions
+3. Teszteld a funkcionalitást: sail artisan test --filter=ProductResourceComprehensiveTest
+```
+
+---
+
+## 🔐 Szerepkör Létrehozása Alapértelmezett Jogosultságokkal
+
+### Új Szerepkörök Gyors Beállítása
+
+Az `make:boilerplate-role` parancs egyszerűsíti új szerepkörök létrehozását:
+
+```bash
+# Alap szerepkör létrehozása alapértelmezett jogosultságokkal
+./vendor/bin/sail artisan make:boilerplate-role editor
+
+# Egyedi jogosultságok megadása
+./vendor/bin/sail artisan make:boilerplate-role moderator --permissions=view_any_user,view_user,update_user
+
+# Egyedi guard megadása
+./vendor/bin/sail artisan make:boilerplate-role api-user --guard=api
+
+# Meglévő szerepkör felülírása
+./vendor/bin/sail artisan make:boilerplate-role editor --force
+```
+
+#### Alapértelmezett Jogosultságok
+
+Ha nem adsz meg egyedi jogosultságokat, a parancs automatikusan hozzárendeli a következő alapvető jogosultságokat:
+
+- `view_any_user` - Felhasználók listázása
+- `view_user` - Felhasználó megtekintése
+- `view_any_activity` - Tevékenységek listázása
+- `view_activity` - Tevékenység megtekintése
+
+#### Szerepkör Névkonvenciók
+
+A szerepkör neve követnie kell ezeket a szabályokat:
+- Kisbetűvel kezdődik
+- Csak kisbetűket és alsóvonásokat tartalmazhat
+- Betűvel végződik
+
+**Helyes példák**: `editor`, `content_manager`, `moderator`
+**Helytelen példák**: `Editor`, `content-manager`, `moderator_`
+
+#### Elérhető Opciók
+
+- `--permissions=*`: Egyedi jogosultságok listája (vesszővel elválasztva)
+- `--guard=web`: Guard megadása (alapértelmezett: web)
+- `--force`: Meglévő szerepkör felülírása
+
+#### Használati Példák
+
+```bash
+# Marketing csapat szerepkör
+./vendor/bin/sail artisan make:boilerplate-role marketing_manager --permissions=view_any_user,create_user,update_user
+
+# API felhasználók szerepkör
+./vendor/bin/sail artisan make:boilerplate-role api_client --guard=api --permissions=view_any_product,view_product
+
+# Tartalomkezelő szerepkör
+./vendor/bin/sail artisan make:boilerplate-role content_editor --permissions=view_any_user,view_user,view_any_activity
+```
+
+#### Szerepkör Hozzárendelése Felhasználóhoz
+
+A létrehozott szerepkört így rendelheted hozzá felhasználókhoz:
+
+```php
+// Egy felhasználóhoz
+$user = User::find(1);
+$user->assignRole('editor');
+
+// Többszörös szerepkör
+$user->assignRole(['editor', 'moderator']);
+
+// Programozott hozzárendelés
+User::where('email', 'like', '%@company.com')->get()->each(function ($user) {
+    $user->assignRole('editor');
+});
+```
+
+---
+
+## ⚙️ Jogosultság Struktúra Szinkronizálása
+
+### Automatikus Jogosultság Felismerés és Szinkronizálás
+
+Az `boilerplate:setup-permissions` parancs automatikusan felismeri és létrehozza az összes szükséges jogosultságot:
+
+```bash
+# Alapvető szinkronizálás
+./vendor/bin/sail artisan boilerplate:setup-permissions
+
+# Teljes reset és újraépítés
+./vendor/bin/sail artisan boilerplate:setup-permissions --reset
+
+# Admin szerepkör szinkronizálása az összes jogosultsággal
+./vendor/bin/sail artisan boilerplate:setup-permissions --sync-admin
+
+# Dry-run mód - változtatások előnézete
+./vendor/bin/sail artisan boilerplate:setup-permissions --dry-run
+```
+
+#### Mit Csinál a Parancs?
+
+1. **Core Jogosultságok**: Alapvető rendszer jogosultságok létrehozása
+2. **Model Alapú Jogosultságok**: Automatikus felismerés `app/Models/` mappából
+3. **Filament Jogosultságok**: Filament resource-ok alapján
+4. **Admin Szinkronizálás**: Admin szerepkör frissítése az összes jogosultsággal
+
+#### Automatikusan Felismert Jogosultságok
+
+**Minden modellhez** (pl. `User`, `Product`, `Order`):
+- `view_any_{model}` - Lista megtekintése
+- `view_{model}` - Egyedi elem megtekintése  
+- `create_{model}` - Új elem létrehozása
+- `update_{model}` - Elem szerkesztése
+- `delete_{model}` - Elem törlése
+- `delete_any_{model}` - Tömeges törlés
+
+**Core Jogosultságok**:
+- `view_any_activity`, `view_activity` - Tevékenység napló
+- `access_admin_panel` - Admin panel hozzáférés
+- `manage_settings` - Rendszerbeállítások
+
+#### Opciók Részletesen
+
+- `--reset`: Törli az összes meglévő jogosultságot és újraépíti
+- `--sync-admin`: Az 'admin' szerepkört szinkronizálja az összes jogosultsággal
+- `--dry-run`: Csak megmutatja mit csinálna, de nem alkalmazza a változtatásokat
+
+#### Használati Példák
+
+```bash
+# Új modell hozzáadása után jogosultságok frissítése
+./vendor/bin/sail artisan make:model Invoice
+./vendor/bin/sail artisan boilerplate:setup-permissions
+
+# Teljes jogosultság rendszer újraépítése fejlesztés során
+./vendor/bin/sail artisan boilerplate:setup-permissions --reset --sync-admin
+
+# Ellenőrzés hogy milyen jogosultságok jönnének létre
+./vendor/bin/sail artisan boilerplate:setup-permissions --dry-run
+```
+
+#### Kimenet Példa
+
+```
+🔑 Boilerplate Jogosultság Struktúra Beállítása
+
+✅ Core jogosultságok (5 db):
+   - access_admin_panel
+   - manage_settings
+   - view_any_activity
+   - view_activity
+
+✅ User model jogosultságok (6 db):
+   - view_any_user, view_user, create_user
+   - update_user, delete_user, delete_any_user
+
+✅ Product model jogosultságok (6 db):
+   - view_any_product, view_product, create_product
+   - update_product, delete_product, delete_any_product
+
+🔄 Admin szerepkör szinkronizálva (17 jogosultság)
+
+📊 Összesítés:
+   Szerepkörök: 3 (admin, user, editor)
+   Jogosultságok: 17
+   Felhasználók: 5
+```
+
+---
+
+## 🔄 Alkalmazás Teljes Újrainitiálása
+
+### Fejlesztői Környezet Gyors Reset
+
+Az `boilerplate:fresh-install` parancs egyetlen lépésben újraindítja a teljes alkalmazást:
+
+```bash
+# Alap fresh install seeding nélkül
+./vendor/bin/sail artisan boilerplate:fresh-install
+
+# Teljes fresh install alapadatokkal
+./vendor/bin/sail artisan boilerplate:fresh-install --seed
+
+# Force mód (éles környezetben is futtatható - VESZÉLYES!)
+./vendor/bin/sail artisan boilerplate:fresh-install --force --seed
+
+# NPM assets kihagyása
+./vendor/bin/sail artisan boilerplate:fresh-install --seed --skip-npm
+
+# Egyedi környezet megadása
+./vendor/bin/sail artisan boilerplate:fresh-install --seed --environment=testing
+```
+
+#### Mit Csinál a Parancs?
+
+1. **Biztonsági Ellenőrzések**: Éles környezetben megakadályozza a futtatást
+2. **Cache Törlése**: Összes Laravel cache tisztítása
+3. **Adatbázis Reset**: `migrate:fresh` futtatása
+4. **Jogosultságok**: Automatikus jogosultság struktúra beállítása
+5. **Seeding**: Alapadatok feltöltése (opcionális)
+6. **NPM Build**: Frontend assets újraépítése (opcionális)
+7. **Optimalizáció**: Cache-ek újraépítése
+
+#### Biztonsági Funkciók
+
+⚠️ **FIGYELEM**: Ez a parancs **TÖRLI az összes adatot** az adatbázisból!
+
+- **Éles környezet védelem**: Automatikusan megakadályozza az éles környezetben való futtatást
+- **Megerősítés**: Interaktív megerősítést kér a törlés előtt
+- **Force mód**: `--force` flag-gel felülbírálható (VESZÉLYES!)
+
+#### Elérhető Opciók
+
+- `--seed`: Alapadatok feltöltése a seeder-ekkel
+- `--force`: Biztonsági ellenőrzések felülbírálása (NE használd élesben!)
+- `--skip-npm`: NPM telepítés és build kihagyása
+- `--environment=local`: Környezet explicit megadása
+
+#### Használati Esetek
+
+**Fejlesztés során**:
+```bash
+# Gyors development reset
+./vendor/bin/sail artisan boilerplate:fresh-install --seed
+```
+
+**Tesztelés előtt**:
+```bash
+# Clean slate tesztekhez
+./vendor/bin/sail artisan boilerplate:fresh-install --seed --environment=testing
+```
+
+**CI/CD Pipeline-ban**:
+```bash
+# Automated testing setup
+./vendor/bin/sail artisan boilerplate:fresh-install --seed --skip-npm --force
+```
+
+#### Kimenet Példa
+
+```
+🚀 Laravel Boilerplate Fresh Install
+
+⚠️  FIGYELMEZTETÉS: Ez a parancs TÖRLI az összes adatot!
+   Környezet: local
+   Seedingel: Igen
+   NPM build: Igen
+
+ Biztosan folytatod? (yes/no) [no]: yes
+
+📋 Cache törlése...
+   ✅ Cache törlése sikeres!
+📋 Adatbázis törlése és migráció...
+   ✅ Adatbázis törlése és migráció sikeres!
+📋 Jogosultságok beállítása...
+   ✅ Jogosultságok beállítása sikeres!
+📋 Alap adatok feltöltése...
+   ✅ Alap adatok feltöltése sikeres!
+📋 NPM függőségek telepítése...
+   ✅ NPM függőségek telepítése sikeres!
+📋 Assets build...
+   ✅ Assets build sikeres!
+📋 Végleges optimalizáció...
+   ✅ Végleges optimalizáció sikeres!
+
+🎉 Fresh Install Sikeres!
+
+📋 Bejelentkezési adatok:
+   Admin: admin@boilerplate.local / password
+   
+🔗 Linkek:
+   Alkalmazás: http://localhost
+   Admin: http://localhost/admin
+   Mailpit: http://localhost:8025
+
+⚡ Következő lépések:
+   1. Teszteld az admin bejelentkezést
+   2. Ellenőrizd a frontend működését
+   3. Futtasd a teszteket: sail artisan test
+```
+
+#### Hibaelhárítás
+
+**NPM hibák**:
+```bash
+# NPM cache tisztítása
+npm cache clean --force
+
+# Node modules újratelepítése
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Jogosultság hibák**:
+```bash
+# Storage jogosultságok javítása
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R $USER:www-data storage bootstrap/cache
+```
+
+---
 
 ## 🎛️ Új Filament Resource Hozzáadása
 
