@@ -9,6 +9,7 @@ Lépésről lépésre tutorialok a gyakori fejlesztési feladatokhoz a Laravel V
 - [Szerepkör Létrehozása Alapértelmezett Jogosultságokkal](#szerepkör-létrehozása-alapértelmezett-jogosultságokkal)
 - [Jogosultság Struktúra Szinkronizálása](#jogosultság-struktúra-szinkronizálása)
 - [Alkalmazás Teljes Újrainitiálása](#alkalmazás-teljes-újrainitiálása)
+- [Környezeti Sablonok Kezelése](#környezeti-sablonok-kezelése)
 
 ### 🎛️ Manuális Fejlesztési Útmutatók
 - [Új Filament Resource Hozzáadása](#új-filament-resource-hozzáadása)
@@ -19,6 +20,182 @@ Lépésről lépésre tutorialok a gyakori fejlesztési feladatokhoz a Laravel V
 - [Fejlesztői Környezet Beállítása](#fejlesztői-környezet-beállítása)
 - [Átfogó Tesztek Írása](#átfogó-tesztek-írása)
 - [Produkciós Telepítés](#produkciós-telepítés)
+
+## 🔧 Környezeti Sablonok Kezelése
+
+### Intelligens Environment Template System
+
+Az `boilerplate:env` parancs automatizált környezeti konfigurációs kezelést biztosít különböző környezetekhez optimalizált sablonokkal.
+
+```bash
+# Elérhető funkciók
+./vendor/bin/sail artisan boilerplate:env list      # Sablonok listázása
+./vendor/bin/sail artisan boilerplate:env copy      # Sablon másolása
+./vendor/bin/sail artisan boilerplate:env validate  # Konfiguráció validálása
+./vendor/bin/sail artisan boilerplate:env check     # Teljes környezeti ellenőrzés
+./vendor/bin/sail artisan boilerplate:env show      # Sablon tartalom megjelenítése
+```
+
+#### Elérhető Környezeti Sablonok
+
+**1. Development Template** - Helyi fejlesztés
+- Debug funkciók bekapcsolva
+- Gyors cache és session kezelés
+- Mailpit integráció
+- Minden UI demo komponens engedélyezve
+
+**2. Testing Template** - Automatizált tesztelés
+- In-memory SQLite adatbázis
+- Array driverek a gyorsaságért
+- Minimális logging
+- UI funkciók kikapcsolva
+
+**3. Production Template** - Éles környezet
+- Optimalizált teljesítmény beállítások
+- Biztonságos session és cache kezelés
+- Redis és AWS S3 integráció
+- Szigorú biztonsági beállítások
+
+**4. CI/CD Template** - Folyamatos integráció
+- GitHub Actions optimalizált
+- Gyors in-memory műveletekhez
+- Minimális resource használat
+
+#### Használati Példák
+
+**Fejlesztői Környezet Gyors Beállítása:**
+```bash
+# 1. Sablonok megtekintése
+./vendor/bin/sail artisan boilerplate:env list
+
+# 2. Development sablon alkalmazása
+./vendor/bin/sail artisan boilerplate:env copy development
+
+# 3. App key generálása
+./vendor/bin/sail artisan key:generate
+
+# 4. Konfiguráció ellenőrzése
+./vendor/bin/sail artisan boilerplate:env check
+```
+
+**Production Deploy Előkészítése:**
+```bash
+# 1. Production sablon alkalmazása (backup készítéssel)
+./vendor/bin/sail artisan boilerplate:env copy production --backup
+
+# 2. Validálás production környezetre
+./vendor/bin/sail artisan boilerplate:env validate --target-env=production
+
+# 3. Biztonsági ellenőrzések
+./vendor/bin/sail artisan boilerplate:env check
+```
+
+**Testing Környezet Beállítása:**
+```bash
+# Testing sablon másolása .env.testing fájlba
+cp templates/environments/env.testing .env.testing
+
+# Tesztek futtatása
+./vendor/bin/sail artisan test
+```
+
+#### Konfiguráció Validálás
+
+A rendszer automatikusan ellenőrzi:
+
+✅ **Kötelező változók** - APP_KEY, DB_CONNECTION, stb.
+✅ **Környezet-specifikus követelmények** - Production vs Development
+✅ **Biztonsági problémák** - Gyenge jelszavak, alapértelmezett értékek
+✅ **Típus validáció** - Boolean, integer, URL típusok
+✅ **Adatbázis és szolgáltatás kapcsolatok**
+
+#### Validációs Kimenet Példa
+
+```
+✅ Környezeti konfiguráció érvényes (production)!
+
+⚠️ Figyelmeztetések:
+  • APP_NAME: Consider customizing the application name for your project
+  • MAIL_FROM_ADDRESS: Update the mail from address to your domain
+
+📊 Összesítés:
+  Hibák: 0
+  Figyelmeztetések: 2
+  Ellenőrzött változók: 15
+```
+
+#### Elérhető Opciók
+
+- `--force`: Meglévő .env fájl felülírása megerősítés nélkül
+- `--backup`: Backup készítése a meglévő .env fájlról
+- `--target-env=production`: Specifikus környezet validálása
+
+#### Sablon Testreszabása
+
+**Új környezeti sablon hozzáadása:**
+
+1. Hozz létre új template fájlt: `templates/environments/env.staging`
+2. Konfiguráld a `config/environment.php` fájlban:
+```php
+'staging' => [
+    'name' => 'Staging',
+    'description' => 'Pre-production testing environment',
+    'file' => 'env.staging',
+],
+```
+
+**Validációs szabályok kibővítése:**
+
+`config/environment.php` fájlban adj hozzá új szabályokat:
+```php
+'required_by_env' => [
+    'staging' => [
+        'STAGING_API_KEY' => 'string',
+        'STAGING_DEBUG_MODE' => 'boolean',
+    ],
+],
+```
+
+#### Hibaelhárítás
+
+**Gyakori problémák:**
+
+1. **Template nem található**
+   ```bash
+   # Ellenőrizd hogy létezik-e a fájl
+   ls -la templates/environments/
+   ```
+
+2. **Validációs hibák**
+   ```bash
+   # Részletes hibainformáció
+   ./vendor/bin/sail artisan boilerplate:env validate --target-env=production
+   ```
+
+3. **Adatbázis kapcsolat sikertelen**
+   ```bash
+   # Sail újraindítása
+   ./vendor/bin/sail down && ./vendor/bin/sail up -d
+   ```
+
+#### Automatizálás CI/CD-ben
+
+**GitHub Actions példa:**
+```yaml
+- name: Setup Environment
+  run: |
+    php artisan boilerplate:env copy ci --force
+    php artisan key:generate
+    php artisan boilerplate:env validate
+```
+
+**Docker Compose produkciós példa:**
+```yaml
+environment:
+  - APP_ENV=production
+volumes:
+  - ./templates/environments/env.production:/var/www/.env:ro
+```
 
 ---
 

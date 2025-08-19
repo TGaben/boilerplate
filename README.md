@@ -64,7 +64,10 @@ Ne építsd újra ugyanazt az infrastruktúrát minden Laravel projekthez. Ez a 
 ```bash
 git clone https://github.com/TGaben/boilerplate.git sajat-projekt
 cd sajat-projekt
-cp .env.example .env
+
+# ⚡ ÚJ: Környezeti sablonok (gyorsabb és pontosabb mint .env.example)
+./vendor/bin/sail artisan boilerplate:env list
+./vendor/bin/sail artisan boilerplate:env copy development
 ```
 
 ### 2. Függőségek Telepítése
