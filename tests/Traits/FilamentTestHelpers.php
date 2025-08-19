@@ -174,7 +174,7 @@ trait FilamentTestHelpers
         $guestResponse = $this->get($route);
         $this->assertTrue(
             $guestResponse->isRedirect() || in_array($guestResponse->getStatusCode(), [403, 404]),
-            "Guest should be redirected, forbidden, or not found, got status: " . $guestResponse->getStatusCode()
+            'Guest should be redirected, forbidden, or not found, got status: ' . $guestResponse->getStatusCode(),
         );
 
         // Admin should be able to access

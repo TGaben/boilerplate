@@ -318,9 +318,9 @@ trait BoilerplateTestHelpers
     protected function getUsersWithPermission(string $permissionName): \Illuminate\Database\Eloquent\Collection
     {
         /** @var \Illuminate\Database\Eloquent\Collection */
-        return User::query()->whereHas('permissions', function($query) use ($permissionName) {
+        return User::query()->whereHas('permissions', function ($query) use ($permissionName) {
             $query->where('name', $permissionName);
-        })->orWhereHas('roles.permissions', function($query) use ($permissionName) {
+        })->orWhereHas('roles.permissions', function ($query) use ($permissionName) {
             $query->where('name', $permissionName);
         })->get();
     }
