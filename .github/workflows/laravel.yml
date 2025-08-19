@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         php-versions: ['8.3']
@@ -86,8 +86,7 @@ jobs:
       run: composer lint
 
     - name: Run static analysis (PHPStan)
-      run: composer stan || true
-      continue-on-error: true
+      run: composer stan
 
     - name: Run tests
       run: php artisan test

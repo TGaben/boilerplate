@@ -1,62 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Laravel 12 Vállalati Boilerplate
 
 <p align="center">
 <a href="https://github.com/TGaben/boilerplate/actions"><img src="https://github.com/TGaben/boilerplate/workflows/Laravel%20CI/CD%20Pipeline/badge.svg" alt="CI/CD Pipeline"></a>
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat&logo=laravel" alt="Laravel 12">
+<img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=flat&logo=php" alt="PHP 8.3">
+<img src="https://img.shields.io/badge/Tests-161%20passed-brightgreen" alt="Tesztek">
+<img src="https://img.shields.io/badge/PHPStan-Level%205-brightgreen" alt="PHPStan">
 </p>
 
-## About Laravel
+**Egy production-ready Laravel boilerplate, amely heteket spórol meg a fejlesztési időből.** Az ötlettől a telepítésig 15 perc alatt eljuthatsz vállalati szintű alapokkal, átfogó admin panellel és automatizált minőségbiztosítási kapukkal.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Miért pont ez a Boilerplate?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ne építsd újra ugyanazt az infrastruktúrát minden Laravel projekthez. Ez a boilerplate biztosítja:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **🎯 15 perces telepítés** - Klónozd, futtass 5 parancsot, kezdj el funkciókkal foglalkozni
+- **🛡️ Vállalati biztonság** - Szerepkör-alapú jogosultságok, tevékenység naplózás, CSRF védelem  
+- **⚡ Zéró-konfig admin** - Teljes Filament admin panel felhasználó/szerepkör kezeléssel
+- **🔧 Minőségi kapuk** - Automatizált tesztelés, kódstílus (Pint), statikus elemzés (PHPStan)
+- **🐳 Docker-first** - Konzisztens fejlesztői környezet Laravel Sail-lel
+- **📱 Modern frontend** - TailwindCSS 3.4 sötét móddal és UI komponensekkel
 
-## Learning Laravel
+## 🎁 Mit Tartalmaz
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🎛️ **Admin Panel (Filament PHP 3.x)**
+- Felhasználókezelés CRUD műveletekkel
+- Szerepkör és jogosultság kezelés (Spatie Laravel Permission)
+- Tevékenység naplózás audit nyomvonalakhoz
+- Dashboard statisztikákkal és betekintésekkel
+- Többnyelvű támogatás (HU/EN)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🔐 **Hitelesítés és Jogosultságkezelés**
+- Szerepkör-alapú hozzáférés-szabályozás (Admin/Felhasználó szerepkörök)
+- Jogosultság-alapú funkció hozzáférés
+- Tevékenység naplózás minden felhasználói művelethez
+- Biztonságos jelszókezelés hash-eléssel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🎨 **Frontend Alapok**
+- TailwindCSS 3.4 egyedi design rendszerrel
+- Sötét/világos mód rendszer preferencia felismeréssel
+- Reszponzív UI komponens könyvtár
+- Konfigurálható demo komponensek (könnyen ki/bekapcsolható)
 
-## Laravel Sponsors
+### 🧪 **Minőségbiztosítás**
+- **161 átfogó teszt** (Unit, Feature, Integration)
+- **Laravel Pint** - PSR-12 kódstílus kikényszerítés
+- **PHPStan Level 5** - Statikus kódelemzés
+- **GitHub Actions CI/CD** - Automatizált minőségi kapuk
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🐳 **Fejlesztői Környezet**
+- **Laravel Sail** - Docker-alapú fejlesztés
+- **MySQL 8** (fejlesztés) + **SQLite** (tesztelés)
+- **Mailpit** email teszteléshez
+- **Vite** asset fordításhoz
 
-### Premium Partners
+## 🚀 Gyors Kezdés (15 perc)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Előfeltételek
+- **Docker** és **Docker Compose**
+- **Git**
 
-## Contributing
+### 1. Klónozás és Beállítás
+```bash
+git clone https://github.com/TGaben/boilerplate.git sajat-projekt
+cd sajat-projekt
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Függőségek Telepítése
+```bash
+composer install
+npm install
+```
 
-## Code of Conduct
+### 3. Fejlesztői Környezet Indítása
+```bash
+./vendor/bin/sail up -d
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Adatbázis Inicializálása
+```bash
+./vendor/bin/sail artisan migrate --seed
+```
 
-## Security Vulnerabilities
+### 5. Asset Build
+```bash
+./vendor/bin/sail npm run build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**🎉 Kész!** Az alkalmazásod fut a következő címeken:
+- **Publikus oldal:** http://localhost  
+- **Admin panel:** http://localhost/admin
 
-## License
+## 🔑 Admin Hozzáférés
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Alapértelmezett admin adatok:**
+- **Email:** `admin@example.com`
+- **Jelszó:** `password`
+
+> 🛡️ **Fontos:** Változtasd meg ezeket az adatokat azonnal production környezetben!
+
+## 🧪 Tesztek Futtatása
+
+```bash
+# Minden teszt futtatása (161 teszt)
+./vendor/bin/sail artisan test
+
+# Coverage-zel
+./vendor/bin/sail artisan test --coverage
+
+# Kódstílus ellenőrzés
+./vendor/bin/sail composer lint
+
+# Statikus elemzés
+./vendor/bin/sail composer stan
+```
+
+## 🛠️ Technológiai Stack
+
+| Komponens | Technológia | Cél |
+|-----------|------------|-----|
+| **Keretrendszer** | Laravel 12 + PHP 8.3 | Modern, robosztus backend |
+| **Admin Panel** | Filament PHP 3.x | Teljes körű admin felület |
+| **Jogosultságok** | Spatie Laravel Permission | Szerepkör-alapú hozzáférés-szabályozás |
+| **Frontend** | TailwindCSS 3.4 | Utility-first stílus |
+| **Adatbázis** | MySQL 8 / SQLite | Megbízható adattárolás |
+| **Tesztelés** | PHPUnit | Átfogó teszt lefedettség |
+| **Minőség** | Pint + PHPStan | Kódstílus + statikus elemzés |
+| **Fejlesztés** | Laravel Sail | Docker-alapú környezet |
+| **CI/CD** | GitHub Actions | Automatizált telepítési pipeline |
+
+## 📚 Dokumentáció
+
+### 📖 **Felhasználóknak**
+- [Architektúra Áttekintés](docs/architecture.hu.md) - Technikai döntések és indoklás
+- [Útmutató Gyűjtemény](docs/how-to-guides.hu.md) - Lépésről lépésre fejlesztési tutorialok
+- [Telepítési Útmutató](docs/deployment.hu.md) - Production telepítési instrukciók
+
+### 👥 **Közreműködőknek**
+- [Közreműködési Irányelvek](CONTRIBUTING.hu.md) - Hogyan járulj hozzá ehhez a projekthez
+- [Magatartási Kódex](CODE_OF_CONDUCT.hu.md) - Közösségi szabványok
+
+## 🎯 Felhasználási Területek
+
+Ez a boilerplate tökéletes a következő esetekhez:
+
+- **SaaS alkalmazások** - Multi-tenant szerepkör kezeléssel
+- **Admin dashboardok** - Adatkezelés audit nyomvonalakkal  
+- **Tartalomkezelés** - Felhasználó által generált tartalom moderálással
+- **E-commerce backend** - Termék/rendelés kezelő rendszerek
+- **Vállalati eszközök** - Belső üzleti alkalmazások
+
+## 🔄 Ütemterv
+
+- [ ] **API Alapok** - Laravel Sanctum hitelesítés
+- [ ] **Multi-tenancy** - Adatbázis-per-bérlő architektúra
+- [ ] **Queue Kezelés** - Háttérfolyamat feldolgozás UI
+- [ ] **Fájl Kezelés** - Média könyvtár S3 integrációval
+- [ ] **Értesítések** - Valós idejű értesítési rendszer
+
+## 🤝 Közreműködés
+
+Szívesen fogadunk közreműködéseket! Kérlek olvasd el a [Közreműködési Irányelveinket](CONTRIBUTING.hu.md) a részletekért.
+
+### 🚀 **Gyors Közreműködési Beállítás**
+```bash
+git clone https://github.com/TGaben/boilerplate.git
+cd boilerplate
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan test  # Győződj meg róla, hogy minden teszt sikeres
+```
+
+## 📄 Licenc
+
+Ez a projekt nyílt forráskódú szoftver, amely az [MIT licenc](https://opensource.org/licenses/MIT) alatt áll.
+
+## 🙏 Köszönetnyilvánítás
+
+Ezekkel a fantasztikus technológiákkal épült:
+- [Laravel](https://laravel.com) - A PHP keretrendszer webes kézműveseknek
+- [Filament](https://filamentphp.com) - Gyönyörű admin panelek Laravel-hez
+- [TailwindCSS](https://tailwindcss.com) - Utility-first CSS keretrendszer
+- [Spatie Csomagok](https://spatie.be/open-source) - Magas minőségű PHP csomagok
+
+---
+
+<p align="center">
+<strong>⭐ Csillagozd meg ezt a repo-t, ha segített valami fantasztikus építésében!</strong><br>
+<em>Kérdések? Nyiss egy issue-t vagy kezdj egy beszélgetést.</em>
+</p>
