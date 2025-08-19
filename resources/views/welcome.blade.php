@@ -3,7 +3,7 @@
 @section('title', 'Welcome to Laravel Boilerplate')
 
 @section('content')
-@if(config('ui.show_demo_components', true))
+@if(config('boilerplate.features.demo_ui_components', true))
     <!-- Hero Section -->
     <section class="bg-gradient-to-b from-primary-50 to-white dark:from-secondary-900 dark:to-secondary-800 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

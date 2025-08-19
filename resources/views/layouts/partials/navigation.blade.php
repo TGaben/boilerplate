@@ -6,7 +6,7 @@
                 <a href="{{ url('/') }}" class="flex items-center space-x-2">
                     <img class="h-8 w-8" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
                     <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                        {{ config('ui.brand.name', config('app.name')) }}
+                        {{ config('boilerplate.brand.name', config('app.name')) }}
                     </span>
                 </a>
             </div>
@@ -18,7 +18,7 @@
                     Home
                 </a>
                 
-                @if(config('ui.show_demo_components', true))
+                @if(config('boilerplate.features.demo_ui_components', true))
                     <a href="#components" 
                        class="text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
                         Components
@@ -50,7 +50,7 @@
             <!-- Theme Toggle and Mobile Menu -->
             <div class="flex items-center space-x-4">
                 <!-- Theme Toggle -->
-                @if(config('ui.theme.enable_theme_toggle', true))
+                @if(config('boilerplate.theme.enable_theme_toggle', true))
                     <button type="button" 
                             id="theme-toggle"
                             class="p-2 text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-200 hover:bg-secondary-100 dark:hover:bg-secondary-700 rounded-lg transition-colors duration-200"
@@ -89,7 +89,7 @@
                     Home
                 </a>
                 
-                @if(config('ui.show_demo_components', true))
+                @if(config('boilerplate.features.demo_ui_components', true))
                     <a href="#components" 
                        class="text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 text-base font-medium transition-colors duration-200">
                         Components

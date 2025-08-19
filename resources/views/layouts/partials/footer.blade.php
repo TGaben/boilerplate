@@ -6,7 +6,7 @@
                 <div class="flex items-center space-x-2 mb-4">
                     <img class="h-8 w-8" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
                     <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                        {{ config('ui.brand.name', config('app.name')) }}
+                        {{ config('boilerplate.brand.name', config('app.name')) }}
                     </span>
                 </div>
                 <p class="text-secondary-600 dark:text-secondary-400 text-sm max-w-md">
@@ -41,7 +41,7 @@
                             Home
                         </a>
                     </li>
-                    @if(config('ui.show_demo_components', true))
+                    @if(config('boilerplate.features.demo_ui_components', true))
                         <li>
                             <a href="#components" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200">
                                 Components
@@ -100,7 +100,7 @@
         <div class="mt-8 pt-8 border-t border-secondary-200 dark:border-secondary-700">
             <div class="flex flex-col sm:flex-row justify-between items-center">
                 <p class="text-secondary-500 dark:text-secondary-400 text-sm">
-                    &copy; {{ date('Y') }} {{ config('ui.brand.name', config('app.name')) }}. All rights reserved.
+                    &copy; {{ date('Y') }} {{ config('boilerplate.brand.name', config('app.name')) }}. All rights reserved.
                 </p>
                 <div class="mt-4 sm:mt-0 flex space-x-6">
                     <a href="#" class="text-secondary-500 dark:text-secondary-400 hover:text-secondary-700 dark:hover:text-secondary-300 text-sm transition-colors duration-200">

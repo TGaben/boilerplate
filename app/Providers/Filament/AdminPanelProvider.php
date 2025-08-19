@@ -27,16 +27,16 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('Laravel Boilerplate')
-            ->brandLogo(asset('images/logo.svg'))
+            ->brandName((string) config('boilerplate.brand.name'))
+            ->brandLogo(asset((string) config('boilerplate.brand.logo_light')))
             ->brandLogoHeight('2rem')
-            ->favicon(asset('favicon.ico'))
+            ->favicon(asset((string) config('boilerplate.brand.favicon')))
             ->colors([
                 'primary' => Color::Blue,
                 'gray' => Color::Slate,
             ])
-            ->sidebarCollapsibleOnDesktop()
-            ->globalSearch(false)
+            ->sidebarCollapsibleOnDesktop((bool) config('boilerplate.admin.sidebar_collapsed_by_default'))
+            ->globalSearch((bool) config('boilerplate.admin.enable_global_search'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

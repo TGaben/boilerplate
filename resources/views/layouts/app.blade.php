@@ -23,7 +23,7 @@
     <!-- Theme Script (Before page load to prevent FOUC) -->
     <script>
         (function() {
-            const theme = localStorage.getItem('theme') || '{{ config('ui.theme.default_mode', 'light') }}';
+            const theme = localStorage.getItem('theme') || '{{ config('boilerplate.theme.default_mode', 'light') }}';
             if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             }
