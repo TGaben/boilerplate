@@ -5,16 +5,16 @@
 <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat&logo=laravel" alt="Laravel 12">
 <img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=flat&logo=php" alt="PHP 8.3">
 <img src="https://img.shields.io/badge/Tests-161%20passed-brightgreen" alt="Tesztek">
-<img src="https://img.shields.io/badge/PHPStan-Level%205-brightgreen" alt="PHPStan">
+<img src="https://img.shields.io/badge/PHPStan-Max%20Level-brightgreen" alt="PHPStan">
 </p>
 
-**Egy production-ready Laravel boilerplate, amely heteket spórol meg a fejlesztési időből.** Az ötlettől a telepítésig 15 perc alatt eljuthatsz vállalati szintű alapokkal, átfogó admin panellel és automatizált minőségbiztosítási kapukkal.
+**Egy production-ready Laravel boilerplate, amely heteket spórol meg a fejlesztési időből.** Az ötlettől a telepítésig 2 perc alatt eljuthatsz vállalati szintű alapokkal, átfogó admin panellel és automatizált minőségbiztosítási kapukkal.
 
 ## ✨ Miért pont ez a Boilerplate?
 
 Ne építsd újra ugyanazt az infrastruktúrát minden Laravel projekthez. Ez a boilerplate biztosítja:
 
-- **🎯 15 perces telepítés** - Klónozd, futtass 5 parancsot, kezdj el funkciókkal foglalkozni
+- **🎯 2 perces telepítés** - Klónozd, futtass egyetlen parancsot, kezdj el funkciókkal foglalkozni
 - **🛡️ Vállalati biztonság** - Szerepkör-alapú jogosultságok, tevékenység naplózás, CSRF védelem  
 - **⚡ Zéró-konfig admin** - Teljes Filament admin panel felhasználó/szerepkör kezeléssel
 - **🔧 Minőségi kapuk** - Automatizált tesztelés, kódstílus (Pint), statikus elemzés (PHPStan)
@@ -45,7 +45,7 @@ Ne építsd újra ugyanazt az infrastruktúrát minden Laravel projekthez. Ez a 
 ### 🧪 **Minőségbiztosítás**
 - **161 átfogó teszt** (Unit, Feature, Integration)
 - **Laravel Pint** - PSR-12 kódstílus kikényszerítés
-- **PHPStan Level 5** - Statikus kódelemzés
+- **PHPStan Max Level** - Legszigorúbb statikus kódelemzés
 - **GitHub Actions CI/CD** - Automatizált minőségi kapuk
 
 ### 🐳 **Fejlesztői Környezet**
@@ -139,7 +139,7 @@ A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőr
 # Kódstílus automatikus javítás
 ./vendor/bin/sail pint
 
-# Statikus elemzés (PHPStan Level 5)
+# Statikus elemzés (PHPStan Max Level)
 ./vendor/bin/sail composer stan
 ```
 

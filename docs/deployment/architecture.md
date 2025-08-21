@@ -52,7 +52,7 @@ Ez a dokumentum magyarázza a technikai döntéseket, architektúrális mintáka
 - **Monitorozásra kész** - Tevékenység naplózás, hiba követés
 
 ### 3. **Karbantarthatóság**
-- **Tiszta kód szabványok** - PSR-12, PHPStan Level 5
+- **Tiszta kód szabványok** - PSR-12, PHPStan Max Level
 - **Átfogó tesztelés** - 161 teszt magas lefedettséggel
 - **Dokumentáció vezérelt** - Önmagát dokumentáló kód és útmutatók
 
@@ -157,7 +157,7 @@ User -> hasMany -> Permissions (közvetlen hozzárendelés)
 - **Laravel-optimalizált** - Kifejezetten Laravel-hez tervezve
 - **Zéró-konfig** - Konfiguráció nélkül működik
 
-**PHPStan Level 5 (Statikus Elemzés)**
+**PHPStan Max Level (Statikus Elemzés)**
 - **Típus biztonság** - Típus-kapcsolatos hibák elkapása futás előtt
 - **Laravel támogatás** - Megérti a Laravel-specifikus mintákat
 - **Fokozatos** - Fokozatosan adoptálható (szintek 0-9)
