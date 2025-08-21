@@ -4,9 +4,16 @@ Lépésről lépésre tutorialok a gyakori fejlesztési feladatokhoz a Laravel V
 
 ## 📋 Tartalomjegyzék
 
+> 📚 **Új dokumentációs struktúra elérhető!** Részletes útmutatók a [📚 docs/README.md](README.md)-ben találhatók. Ez a fájl a gyakori gyors feladatokra összpontosít.
+
 ### ⚡ Quick Start & Automation (Új!)
 - [Quick Start Script - Egyparancs Setup](#quick-start-script---egyparancs-setup)
 - [Környezeti Sablonok Kezelése](#környezeti-sablonok-kezelése)
+
+### 🍳 Recipe System (ÚJ!)
+- [Recipe Böngészés és Telepítés](#recipe-böngészés-és-telepítés)
+- [Új Recipe Létrehozása](#új-recipe-létrehozása)
+- [Recipe Template Generálás](#recipe-template-generálás)
 
 ### 🚀 Boilerplate Scaffolding Parancsok (Új!)
 - [Boilerplate Resource Generálása](#boilerplate-resource-generálása)
@@ -1614,6 +1621,203 @@ EXPOSE 9000
 CMD ["php-fpm"]
 ```
 
+## 🍳 Recipe System (ÚJ!)
+
+### Recipe Böngészés és Telepítés
+
+A Laravel Boilerplate Recipe System lehetővé teszi opcionális funkciók moduláris telepítését.
+
+#### Elérhető Recipes Listázása
+
+```bash
+# Összes recipe listázása
+php artisan boilerplate:recipes list
+
+# Kategória szerint szűrés
+php artisan boilerplate:recipes list --category=backend
+
+# Nehézség szerint szűrés
+php artisan boilerplate:recipes list --difficulty=easy
+
+# Csak telepített recipes
+php artisan boilerplate:recipes list --installed
+
+# Csak elérhető (nem telepített) recipes
+php artisan boilerplate:recipes list --available
+```
+
+#### Interaktív Recipe Böngészés
+
+```bash
+# Interaktív böngésző indítása
+php artisan boilerplate:recipes browse
+
+# Ez megnyit egy menüt ahol választhatsz:
+# 1️⃣  Böngészés kategória szerint
+# 2️⃣  Böngészés nehézség szerint  
+# 3️⃣  Telepített recipes megtekintése
+# 4️⃣  Recipe keresése
+# 5️⃣  Statisztikák megtekintése
+# 6️⃣  Recipe telepítése
+```
+
+#### Recipe Információk
+
+```bash
+# Részletes információ egy recipe-ról
+php artisan boilerplate:recipes info api-development
+
+# Kimenet:
+# 📦 API Development
+# ID: api-development
+# Állapot: ⬜ Nem telepítve
+# Leírás: RESTful API endpoints Laravel Sanctum autentikációval
+# Nehézség: easy
+# Becsült idő: 2-3 óra
+# Kategória: backend
+# Címkék: api, rest, sanctum, authentication
+# Csomagok: laravel/sanctum
+```
+
+#### Recipe Telepítése
+
+```bash
+# Recipe telepítése
+php artisan boilerplate:recipes install api-development
+
+# Kényszerített telepítés (warning nélkül)
+php artisan boilerplate:recipes install file-uploads --force
+```
+
+#### Recipe Eltávolítása
+
+```bash
+# Recipe eltávolítása
+php artisan boilerplate:recipes remove api-development
+
+# Kényszerített eltávolítás
+php artisan boilerplate:recipes remove multi-tenancy --force
+```
+
+#### Recipe Statisztikák
+
+```bash
+# Telepítési statisztikák megtekintése
+php artisan boilerplate:recipes stats
+
+# Kimenet:
+# 📊 Recipe Statisztikák:
+# 📦 Összes elérhető: 8
+# ✅ Telepített: 2
+# 📈 Telepítési arány: 25.0%
+#
+# Kategóriák szerint:
+#   🔧 Backend Features: 3
+#   💾 Storage & Files: 2
+#   🔒 Security & Auth: 1
+#   ⚡ Performance: 1
+#   📊 Analytics: 1
+```
+
+### Új Recipe Létrehozása
+
+#### Recipe Scaffolding
+
+```bash
+# Új recipe létrehozása scaffolding-gal
+php artisan make:boilerplate-recipe "Email Templates" --category=communication --difficulty=medium --time="2-3 óra"
+
+# Ez létrehozza:
+# ✅ docs/recipes/email-templates.md (teljes dokumentáció template)
+# ✅ app/Services/EmailTemplatesService.php (service osztály)
+# ✅ app/Http/Controllers/EmailTemplatesController.php (controller)
+# ✅ config/recipes.php frissítése (új recipe regisztrálása)
+```
+
+#### Recipe Template Testreszabása
+
+```bash
+# Force overwrite meglévő recipe
+php artisan make:boilerplate-recipe "Custom Feature" --force
+
+# Különböző kategóriák és nehézségek
+php artisan make:boilerplate-recipe "Advanced Cache" --category=performance --difficulty=advanced --time="4-6 óra"
+```
+
+### Recipe Template Generálás
+
+#### Template Struktúra
+
+A `stubs/recipes/recipe.md.stub` fájl tartalmazza a recipe template alapját. Ez tartalmaz helyőrzőket (placeholder):
+
+```markdown
+# Recipe: {{ NAME }}
+
+## 🎯 Mikor Használd?
+- **{{ USE_CASE_1 }}**
+- **{{ USE_CASE_2 }}**
+
+## ⏱️ Implementációs Idő: {{ ESTIMATED_TIME }}
+
+## 📋 Előfeltételek
+- ✅ Core boilerplate telepítve
+- ✅ {{ PREREQUISITE_1 }}
+- ✅ {{ PREREQUISITE_2 }}
+```
+
+#### Automatikus Placeholder Csere
+
+A recipe generátor automatikusan lecseréli a placeholder-eket:
+
+```php
+// Kategória alapú placeholder-ek
+'backend' => [
+    'USE_CASE_1' => 'Server-side API endpoints',
+    'USE_CASE_2' => 'Business logic implementation',
+],
+
+'frontend' => [
+    'USE_CASE_1' => 'User interface components', 
+    'USE_CASE_2' => 'Interactive user experiences',
+],
+
+// Technikai placeholder-ek
+'SERVICE_NAME' => 'EmailTemplatesService',
+'CONTROLLER_NAME' => 'EmailTemplatesController',
+'MODEL_NAME' => 'EmailTemplate',
+```
+
+#### Recipe Development Workflow
+
+1. **Scaffolding**: `php artisan make:boilerplate-recipe "Feature Name"`
+2. **Dokumentáció**: Szerkeszd `docs/recipes/feature-name.md`
+3. **Implementation**: Implementáld a service-t és controller-t
+4. **Testing**: Írj teszteket a funkcionalitáshoz
+5. **Integration**: Konfiguráld a route-okat és permissions-t
+6. **Documentation**: Frissítsd a troubleshooting és használati példákat
+
+#### Recipe Best Practices
+
+```bash
+# 1. Konzisztens elnevezés
+kebab-case: api-development, file-uploads, multi-tenancy
+
+# 2. Kategóriák használata
+backend, frontend, storage, architecture, communication, 
+security, performance, analytics, realtime
+
+# 3. Reális időbecslés
+easy: 1-3 óra, medium: 3-6 óra, advanced: 6+ óra/napok
+
+# 4. Dependency management
+Listázd a szükséges csomagokat és előfeltételeket
+
+# 5. Troubleshooting
+Mindig adj problémamegoldási tippeket
+```
+
 ---
 
 Ezek az útmutatók gyakorlati, lépésről lépésre instrukciókkat adnak a gyakori fejlesztési feladatokhoz. Minden útmutató teljes kód példákat tartalmaz és a Laravel legjobb gyakorlatait követi.
+
+> 💡 **Újdonság**: A Recipe System lehetővé teszi a moduláris funkcióbővítést. Részletes útmutatók a [📚 docs/README.md](README.md) dokumentációs indexben találhatók.

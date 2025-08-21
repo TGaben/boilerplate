@@ -159,14 +159,27 @@ A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőr
 
 ## 📚 Dokumentáció
 
-### 📖 **Felhasználóknak**
-- [Architektúra Áttekintés](docs/architecture.md) - Technikai döntések és indoklás
-- [Útmutató Gyűjtemény](docs/how-to-guides.md) - Lépésről lépésre fejlesztési tutorialok **+ Új scaffolding parancsok! 🚀**
-- [Telepítési Útmutató](docs/deployment.md) - Production telepítési instrukciók
+### 🏗️ **Core Komponensek (Minden projektben használható)**
+- [🔐 Authentication & Permissions](docs/core/authentication.md) - Felhasználó- és jogosultságkezelés
+- [🎛️ Admin Panel (Filament)](docs/core/admin-panel.md) - Admin felület használata és testreszabása
+- [🌍 Environment Setup](docs/core/environment-setup.md) - Környezeti konfigurációk és sablonok
+- [🧪 Testing Foundation](docs/core/testing.md) - Tesztelési alapok és helper-ek
+
+### 🍳 **Recipes (Opcionális funkciók igény szerint)**
+- [🔌 API Development](docs/recipes/api-development.md) - RESTful API Laravel Sanctum-mal
+- [💾 File Upload System](docs/recipes/file-uploads.md) - Fájlfeltöltés képoptimalizálással
+- [🏗️ Multi-Tenancy](docs/recipes/multi-tenancy.md) - SaaS multi-tenant architektúra
+
+### 🚀 **Deployment & Troubleshooting**
+- [🏗️ Architecture Overview](docs/deployment/architecture.md) - Rendszerterv és technológiai döntések
+- [📖 Deployment Guide](docs/deployment.md) - Produkciós telepítési útmutató
+- [🔧 Troubleshooting](docs/troubleshooting/common-issues.md) - Gyakori problémák és megoldások
+
+### 📋 **Teljes Navigáció**
+- [📚 Documentation Index](docs/README.md) - Teljes dokumentációs áttekintés minden funkcióval
 
 ### 👥 **Közreműködőknek**
-- [Közreműködési Irányelvek](CONTRIBUTING.hu.md) - Hogyan járulj hozzá ehhez a projekthez
-- [Magatartási Kódex](CODE_OF_CONDUCT.hu.md) - Közösségi szabványok
+- [Közreműködési Irányelvek](CONTRIBUTING.md) - Hogyan járulj hozzá ehhez a projekthez
 
 ## 🎯 Felhasználási Területek
 
