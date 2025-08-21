@@ -1,5 +1,6 @@
 includes:
     - ./vendor/nunomaduro/larastan/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     level: max
@@ -13,12 +14,6 @@ parameters:
     # Laravel specific configurations
     bootstrapFiles:
         - vendor/autoload.php
-    
-    # Keep only actively used patterns - temporary until we fix the actual issues
-    ignoreErrors:
-        - '#Cannot cast mixed to (string|int)\.#'
-        - '#Binary operation "\." between .* and .* results in an error\.#'
-
     
     # Exclude generated files and vendor
     excludePaths:

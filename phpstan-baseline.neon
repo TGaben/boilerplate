@@ -1,0 +1,1285 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot access offset ''catalog'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRecipe.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRecipe.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\MakeBoilerplateRecipe\:\:generatePlaceholders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRecipe.php
+
+		-
+			message: '#^Parameter \#2 \$replace of function str_replace expects array\<string\>\|string, list given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRecipe.php
+
+		-
+			message: '#^Parameter \#2 \$contents of method Illuminate\\Filesystem\\Filesystem\:\:put\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Console/Commands/MakeBoilerplateResource.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\MakeBoilerplateRole\:\:assignPermissions\(\) has parameter \$permissions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\MakeBoilerplateRole\:\:getDefaultPermissions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Part \$permission\-\>name \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Part \$permissionName \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 1
+			path: app/Console/Commands/MakeBoilerplateRole.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 6
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Call to function is_array\(\) with non\-empty\-array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 4
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Call to function is_string\(\) with non\-falsy\-string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''difficulty'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''icon'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''installed_at'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''is_installed'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''success'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot access offset ''version'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot call method groupBy\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot call method isEmpty\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 17
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ManageBoilerplateRecipes\:\:displayInstallationResult\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ManageBoilerplateRecipes\:\:displayRecipeInfo\(\) has parameter \$recipe with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ManageBoilerplateRecipes\:\:displayRecipeList\(\) has parameter \$recipes with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ManageBoilerplateRecipes\:\:getFilteredRecipes\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Offset ''id'' on non\-empty\-array\<string, mixed\> on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Parameter \#1 \$difficulty of method App\\Console\\Commands\\ManageBoilerplateRecipes\:\:getDifficultyColor\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Parameter \#1 \$value of function collect expects Illuminate\\Contracts\\Support\\Arrayable\<\(int\|string\), mixed\>\|iterable\<\(int\|string\), mixed\>\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Parameter \#2 \$array of function implode expects array\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$categoryInfo\[''icon''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$categoryInfo\[''name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$category\[''icon''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$category\[''name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$count \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$difficulty \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$icon \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$package \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''category''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''description''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''difficulty''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''estimated_time''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''id''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''installed_at''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 4
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$recipe\[''version''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$result\[''recipe''\]\[''name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$stats\[''installation_rate''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$stats\[''total_available''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Part \$stats\[''total_installed''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Unable to resolve the template type TKey in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Console/Commands/ManageBoilerplateRecipes.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 4
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Cannot access offset ''description'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\ManageEnvironment\:\:displayValidationResults\(\) has parameter \$validation with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$config\[''description''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$config\[''name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$env \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$key \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$templateDescription \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$templateName \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Part \$warning \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Console/Commands/ManageEnvironment.php
+
+		-
+			message: '#^Method App\\Console\\Commands\\SetupBoilerplatePermissions\:\:discoverModels\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Commands/SetupBoilerplatePermissions.php
+
+		-
+			message: '#^Parameter \#1 \$class of function class_basename expects object\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/SetupBoilerplatePermissions.php
+
+		-
+			message: '#^Method App\\Filament\\Resources\\ActivityResource\:\:getGlobalSearchResultTitle\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Filament/Resources/ActivityResource.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$query contains generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Filament/Resources/ActivityResource.php
+
+		-
+			message: '#^Parameter \#1 \$class of function class_basename expects object\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/ActivityResource.php
+
+		-
+			message: '#^Property App\\Filament\\Resources\\ActivityResource\:\:\$globalSearchColumns type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Resources/ActivityResource.php
+
+		-
+			message: '#^Cannot access offset ''attributes'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Filament/Resources/ActivityResource/Pages/ViewActivity.php
+
+		-
+			message: '#^Cannot access offset ''old'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Filament/Resources/ActivityResource/Pages/ViewActivity.php
+
+		-
+			message: '#^Cannot access property \$properties on mixed\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: app/Filament/Resources/ActivityResource/Pages/ViewActivity.php
+
+		-
+			message: '#^Parameter \#1 \$class of function class_basename expects object\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/ActivityResource/Pages/ViewActivity.php
+
+		-
+			message: '#^Cannot call method count\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: app/Filament/Resources/RoleResource.php
+
+		-
+			message: '#^Cannot call method filter\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Filament/Resources/RoleResource.php
+
+		-
+			message: '#^Cannot call method users\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Filament/Resources/RoleResource.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Filament/Resources/UserResource.php
+
+		-
+			message: '#^Cannot call method count\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Filament/Resources/UserResource.php
+
+		-
+			message: '#^Cannot call method filter\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Filament/Resources/UserResource.php
+
+		-
+			message: '#^Parameter \#3 \$value of method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:whereDate\(\) expects DateTimeInterface\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/UserResource.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\LanguageController\:\:available\(\) should return array\<string, string\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/LanguageController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\LanguageController\:\:current\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Http/Controllers/LanguageController.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_keys expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/LanguageController.php
+
+		-
+			message: '#^Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session\:\:get\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/LanguageController.php
+
+		-
+			message: '#^Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session\:\:put\(\) expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/LanguageController.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_keys expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/SetLocale.php
+
+		-
+			message: '#^Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session\:\:get\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/SetLocale.php
+
+		-
+			message: '#^Parameter \#1 \$locale of static method Illuminate\\Support\\Facades\\App\:\:setLocale\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/SetLocale.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_keys expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/LanguageSwitcher.php
+
+		-
+			message: '#^Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session\:\:put\(\) expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/LanguageSwitcher.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: app/Providers/Filament/AdminPanelProvider.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot access offset ''default_values'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot access offset ''forbidden_values'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot access offset ''production_only'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot access offset ''warning'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Method App\\Services\\EnvironmentValidator\:\:getAvailableTemplates\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Services\\EnvironmentValidator\:\:addError\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Services\\EnvironmentValidator\:\:addWarning\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Services\\EnvironmentValidator\:\:getEnvValue\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Services\\EnvironmentValidator\:\:validateSecurityStrength\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Parameter \#2 \$message of method App\\Services\\EnvironmentValidator\:\:addWarning\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Part \$key \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Property App\\Services\\EnvironmentValidator\:\:\$config \(array\<string, mixed\>\) does not accept array\<mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Property App\\Services\\EnvironmentValidator\:\:\$environment \(array\<string, string\>\) does not accept array\<string\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Services/EnvironmentValidator.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''clear_cache_after_install'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''documentation'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''documentation_path'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''is_installed'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset ''run_migrations_after_install'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:clearCache\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getAvailableRecipes\(\) should return Illuminate\\Support\\Collection\<string, array\<string, mixed\>\> but returns Illuminate\\Support\\Collection\<\(int\|string\), non\-empty\-array\<mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getCategories\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getInstallationStats\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getInstalledRecipes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getRecipe\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getRecipe\(\) should return array\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getRecipesByCategory\(\) should return Illuminate\\Support\\Collection\<string, array\<string, mixed\>\> but returns Illuminate\\Support\\Collection\<string, non\-empty\-array\<string, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:getRecipesByDifficulty\(\) should return Illuminate\\Support\\Collection\<string, array\<string, mixed\>\> but returns Illuminate\\Support\\Collection\<string, non\-empty\-array\<string, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:installComposerPackages\(\) has parameter \$packages with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:installComposerPackages\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:installRecipe\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:markRecipeAsInstalled\(\) has parameter \$recipe with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:removeRecipe\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:runMigrations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:saveInstalledRecipes\(\) has parameter \$recipes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Method App\\Services\\RecipeManager\:\:validateDependencies\(\) has parameter \$recipe with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Parameter \#1 \$packages of method App\\Services\\RecipeManager\:\:installComposerPackages\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Parameter \#1 \$value of function collect expects Illuminate\\Contracts\\Support\\Arrayable\<\(int\|string\), mixed\>\|iterable\<\(int\|string\), mixed\>\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Part \$dependency \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Part \$package \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Part \$recipe\[''id''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Property App\\Services\\RecipeManager\:\:\$config \(array\<string, mixed\>\) does not accept array\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Unable to resolve the template type TKey in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function collect$#'
+			identifier: argument.templateType
+			count: 1
+			path: app/Services/RecipeManager.php
+
+		-
+			message: '#^Parameter \#1 \$name of static method Illuminate\\Support\\Facades\\Schema\:\:connection\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: database/migrations/2025_08_02_214045_create_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder\:\:create\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2025_08_02_214045_create_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder\:\:dropIfExists\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2025_08_02_214045_create_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$name of static method Illuminate\\Support\\Facades\\Schema\:\:connection\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: database/migrations/2025_08_02_214046_add_event_column_to_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder\:\:table\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: database/migrations/2025_08_02_214046_add_event_column_to_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$name of static method Illuminate\\Support\\Facades\\Schema\:\:connection\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: database/migrations/2025_08_02_214047_add_batch_uuid_column_to_activity_log_table.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder\:\:table\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: database/migrations/2025_08_02_214047_add_batch_uuid_column_to_activity_log_table.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Cannot access property \$properties on Spatie\\Activitylog\\Models\\Activity\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Offset ''attributes'' might not exist on Illuminate\\Support\\Collection\|null\.$#'
+			identifier: offsetAccess.notFound
+			count: 4
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Offset ''old'' might not exist on Illuminate\\Support\\Collection\|null\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of method PHPUnit\\Framework\\Assert\:\:assertArrayNotHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/ActivityLogTest.php
+
+		-
+			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Filament/ActivityResourceComprehensiveTest.php
+
+		-
+			message: '#^Cannot access property \$id on Spatie\\Activitylog\\Models\\Activity\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Filament/ActivityResourceComprehensiveTest.php
+
+		-
+			message: '#^Cannot call method toArray\(\) on Illuminate\\Support\\Collection\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Filament/ActivityResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\ActivityResourceComprehensiveTest\:\:\$adminRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/ActivityResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\ActivityResourceComprehensiveTest\:\:\$userRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/ActivityResourceComprehensiveTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 3
+			path: tests/Feature/Filament/AdminDashboardComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\AdminDashboardComprehensiveTest\:\:\$adminRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/AdminDashboardComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\AdminDashboardComprehensiveTest\:\:\$userRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/AdminDashboardComprehensiveTest.php
+
+		-
+			message: '#^Cannot call method hasPermissionTo\(\) on Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Cannot call method permissions\(\) on Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Method Spatie\\Permission\\Contracts\\Role\:\:hasPermissionTo\(\) invoked with 1 parameter, 2 required\.$#'
+			identifier: arguments.count
+			count: 5
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Parameter \#1 \$permission of method Spatie\\Permission\\Contracts\\Role\:\:hasPermissionTo\(\) expects BackedEnum\|int\|Spatie\\Permission\\Contracts\\Permission\|string, Spatie\\Permission\\Models\\Permission\|null given\.$#'
+			identifier: argument.type
+			count: 5
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Parameter \#1 \$permission of method Spatie\\Permission\\Models\\Role\:\:revokePermissionTo\(\) expects array\<Spatie\\Permission\\Contracts\\Permission\|string\>\|BackedEnum\|Spatie\\Permission\\Contracts\\Permission\|string, Spatie\\Permission\\Models\\Permission\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$permissions of method Spatie\\Permission\\Models\\Role\:\:givePermissionTo\(\) expects array\|BackedEnum\|Illuminate\\Support\\Collection\|int\|Spatie\\Permission\\Contracts\\Permission\|string, Spatie\\Permission\\Models\\Permission\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\RoleResourceComprehensiveTest\:\:\$adminRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\RoleResourceComprehensiveTest\:\:\$userRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/RoleResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\UserResourceComprehensiveTest\:\:\$adminRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/UserResourceComprehensiveTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Filament\\UserResourceComprehensiveTest\:\:\$userRole \(Spatie\\Permission\\Models\\Role\) does not accept Spatie\\Permission\\Models\\Role\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Filament/UserResourceComprehensiveTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Feature/LanguageTest.php
+
+		-
+			message: '#^Method Spatie\\Permission\\Contracts\\Role\:\:hasPermissionTo\(\) invoked with 1 parameter, 2 required\.$#'
+			identifier: arguments.count
+			count: 6
+			path: tests/Feature/RolePermissionTest.php
+
+		-
+			message: '#^Binary operation "\." between mixed and non\-falsy\-string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Cannot access property \$email on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:assertAdminNavigationContains\(\) has parameter \$expectedNavigationItems with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:assertRoleHasPermissions\(\) has parameter \$expectedPermissions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:assertUsersExistInDatabase\(\) has parameter \$users with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createAdminUser\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createRegularUser\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createUserWithPermissions\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createUserWithPermissions\(\) has parameter \$permissions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createUserWithRole\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createUsersWithRole\(\) has parameter \$baseAttributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:createUsersWithRole\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:getAdminRole\(\) should return Spatie\\Permission\\Models\\Role but returns Spatie\\Permission\\Contracts\\Role\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:getUserRole\(\) should return Spatie\\Permission\\Models\\Role but returns Spatie\\Permission\\Contracts\\Role\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:getUsersWithPermission\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:getUsersWithRole\(\) return type with generic class Illuminate\\Database\\Eloquent\\Collection does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:setupStandardTestUsers\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:testAdminLocales\(\) has parameter \$locales with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:testAdminLogout\(\) return type with generic class Illuminate\\Testing\\TestResponse does not specify its types\: TResponse$#'
+			identifier: missingType.generics
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method Tests\\TestCase\:\:testAdminRouteAccess\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^PHPDoc tag @var contains generic class Illuminate\\Database\\Eloquent\\Collection but does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Parameter \#1 \$attributes of method Illuminate\\Database\\Eloquent\\Factories\\Factory\<App\\Models\\User\>\:\:create\(\) expects array\<string, mixed\>\|\(callable\(array\<string, mixed\>\)\: array\<string, mixed\>\), non\-empty\-array given\.$#'
+			identifier: argument.type
+			count: 4
+			path: tests/TestCase.php
+
+		-
+			message: '#^Parameter \#1 \$needle of method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Parameter \#1 \$permission of method Spatie\\Permission\\Models\\Role\:\:hasPermissionTo\(\) expects BackedEnum\|int\|Spatie\\Permission\\Contracts\\Permission\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/TestCase.php
+
+		-
+			message: '#^Part \$item \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Part \$permissionName \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: tests/TestCase.php
