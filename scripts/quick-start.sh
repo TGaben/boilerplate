@@ -33,7 +33,6 @@ BACKUP_DIR="${PROJECT_ROOT}/.quick-start-backup"
 ENVIRONMENT="$DEFAULT_ENV"
 SKIP_INTERACTIVE=false
 CHECK_ONLY=false
-VERBOSE=false
 FORCE_REINSTALL=false
 SKIP_TESTS=false
 CUSTOM_DOMAIN=""
@@ -90,10 +89,10 @@ progress_bar() {
     local filled=$((current * width / total))
     local empty=$((width - filled))
     
-    printf "\r${CYAN}["
-    printf "%*s" $filled | tr ' ' '█'
-    printf "%*s" $empty | tr ' ' '░'
-    printf "] %d%% (%d/%d)${NC}" $percentage $current $total
+    printf "\r%s[" "${CYAN}"
+    printf "%*s" "$filled" "" | tr ' ' '█'
+    printf "%*s" "$empty" "" | tr ' ' '░'
+    printf "] %d%% (%d/%d)%s" "$percentage" "$current" "$total" "${NC}"
 }
 
 create_backup() {
@@ -127,7 +126,7 @@ command_exists() {
 
 check_port() {
     local port=$1
-    if lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+    if lsof -Pi :"$port" -sTCP:LISTEN -t >/dev/null 2>&1; then
         return 0  # Port is in use
     else
         return 1  # Port is free
@@ -298,8 +297,8 @@ start_docker_environment() {
     local conflicts=()
     
     for port in "${ports[@]}"; do
-        if check_port $port; then
-            conflicts+=($port)
+        if check_port "$port"; then
+            conflicts+=("$port")
         fi
     done
     
@@ -507,10 +506,6 @@ parse_arguments() {
                 CHECK_ONLY=true
                 shift
                 ;;
-            --verbose)
-                VERBOSE=true
-                shift
-                ;;
             --force)
                 FORCE_REINSTALL=true
                 shift
@@ -543,7 +538,6 @@ show_help() {
     echo "  --domain=DOMAIN         Egyedi domain production esetén"
     echo "  --skip-interactive      Automatikus mód (CI-hez)"
     echo "  --check-only            Csak dependency ellenőrzés"
-    echo "  --verbose               Részletes kimenet"
     echo "  --force                 Újratelepítés kényszerítése"
     echo "  --skip-tests            Tesztek átugrása"
     echo "  --help, -h             Ez a súgó"
