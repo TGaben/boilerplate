@@ -1,0 +1,297 @@
+name: Quick Start Script Tests
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'scripts/quick-start.sh'
+      - 'templates/environments/*'
+      - '.github/workflows/quick-start-test.yml'
+
+jobs:
+  # =================================================================
+  # DEPENDENCY CHECK TESTS
+  # =================================================================
+  dependency-check:
+    name: Dependency Check Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Make script executable
+      run: chmod +x scripts/quick-start.sh
+      
+    - name: Test dependency checking
+      run: ./scripts/quick-start.sh --check-only
+      
+    - name: Test help functionality
+      run: ./scripts/quick-start.sh --help
+
+  # =================================================================
+  # CROSS-PLATFORM TESTS
+  # =================================================================
+  cross-platform:
+    name: Cross-Platform Tests
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04]
+        
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Docker
+      if: matrix.os == 'ubuntu-20.04'
+      run: |
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sudo sh get-docker.sh
+        sudo usermod -aG docker $USER
+        
+    - name: Make script executable
+      run: chmod +x scripts/quick-start.sh
+      
+    - name: Test script dependency check
+      run: ./scripts/quick-start.sh --check-only
+
+  # =================================================================
+  # ENVIRONMENT TEMPLATE TESTS
+  # =================================================================
+  environment-tests:
+    name: Environment Template Tests
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        environment: [development, testing, production, ci]
+        
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, dom, fileinfo, mysql, gd, curl, zip, sqlite, pdo_sqlite
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install Composer dependencies
+      run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+      
+    - name: Make script executable
+      run: chmod +x scripts/quick-start.sh
+      
+    - name: Test environment template validation
+      run: |
+        # Test template exists
+        if [[ ! -f "templates/environments/env.${{ matrix.environment }}" ]]; then
+          echo "❌ Template not found: env.${{ matrix.environment }}"
+          exit 1
+        fi
+        
+        # Test template content
+        php artisan boilerplate:env show ${{ matrix.environment }} > /dev/null
+        
+        echo "✅ Template ${{ matrix.environment }} is valid"
+
+  # =================================================================
+  # CI ENVIRONMENT QUICK START TEST
+  # =================================================================
+  ci-quick-start:
+    name: CI Quick Start Test
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, dom, fileinfo, mysql, gd, curl, zip, sqlite, pdo_sqlite
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Make script executable
+      run: chmod +x scripts/quick-start.sh
+      
+    - name: Install Composer dependencies (for CI env setup)
+      run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      
+    - name: Test CI environment setup (partial)
+      run: |
+        # Test CI environment template application
+        php artisan boilerplate:env copy ci --force
+        
+        # Verify environment variables
+        php artisan boilerplate:env validate --target-env=ci
+        
+        # Test key generation
+        php artisan key:generate --no-interaction
+        
+        # Test basic connectivity
+        php artisan boilerplate:env check
+        
+        echo "✅ CI environment setup successful"
+
+  # =================================================================
+  # PERFORMANCE BENCHMARK
+  # =================================================================
+  performance-benchmark:
+    name: Performance Benchmark
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, dom, fileinfo, mysql, gd, curl, zip, sqlite, pdo_sqlite
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Make script executable
+      run: chmod +x scripts/quick-start.sh
+      
+    - name: Benchmark dependency check speed
+      run: |
+        echo "🚀 Testing dependency check performance..."
+        
+        # Warm up
+        ./scripts/quick-start.sh --check-only > /dev/null
+        
+        # Benchmark (should be under 5 seconds)
+        start_time=$(date +%s)
+        ./scripts/quick-start.sh --check-only
+        end_time=$(date +%s)
+        
+        duration=$((end_time - start_time))
+        echo "⏱️ Dependency check took: ${duration}s"
+        
+        if [[ $duration -gt 5 ]]; then
+          echo "❌ Dependency check too slow (>5s)"
+          exit 1
+        fi
+        
+        echo "✅ Dependency check performance OK"
+
+  # =================================================================
+  # SCRIPT VALIDATION
+  # =================================================================
+  script-validation:
+    name: Script Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install ShellCheck
+      run: sudo apt-get update && sudo apt-get install -y shellcheck
+      
+    - name: Validate shell script syntax
+      run: |
+        echo "🔍 Running ShellCheck on quick-start.sh..."
+        shellcheck scripts/quick-start.sh
+        
+    - name: Test script execution permissions
+      run: |
+        if [[ ! -x "scripts/quick-start.sh" ]]; then
+          echo "❌ Script is not executable"
+          exit 1
+        fi
+        echo "✅ Script has correct permissions"
+        
+    - name: Test error handling
+      run: |
+        echo "🧪 Testing error handling..."
+        
+        # Test invalid environment
+        if ./scripts/quick-start.sh --env=invalid 2>/dev/null; then
+          echo "❌ Script should fail with invalid environment"
+          exit 1
+        fi
+        
+        echo "✅ Error handling works correctly"
+
+  # =================================================================
+  # INTEGRATION WITH EXISTING CI
+  # =================================================================
+  integration-test:
+    name: Integration with Existing CI
+    runs-on: ubuntu-latest
+    needs: [dependency-check, script-validation]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, dom, fileinfo, mysql, gd, curl, zip, sqlite, pdo_sqlite
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Make scripts executable
+      run: |
+        chmod +x scripts/quick-start.sh
+        chmod +x scripts/quality-check.sh
+        
+    - name: Install dependencies
+      run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      
+    - name: Test CI environment with quality check
+      run: |
+        # Setup CI environment
+        php artisan boilerplate:env copy ci --force
+        php artisan key:generate --no-interaction
+        
+        # Install NPM dependencies
+        npm ci --silent
+        
+        # Run quality check (basic version for CI)
+        # Note: Full quality-check.sh would require Docker
+        php artisan test --testsuite=Unit
+        ./vendor/bin/pint --test
+        ./vendor/bin/phpstan analyse --no-progress
+        
+        echo "✅ Integration test successful"

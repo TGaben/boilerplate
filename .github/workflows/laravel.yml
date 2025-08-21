@@ -59,23 +59,15 @@ jobs:
     - name: Build assets
       run: npm run build
 
-    - name: Create environment file for testing
+    - name: Make scripts executable
+      run: chmod +x scripts/quick-start.sh scripts/quality-check.sh
+
+    - name: Setup CI environment using environment template
       run: |
-        echo "APP_NAME=Laravel" > .env
-        echo "APP_ENV=testing" >> .env
-        echo "APP_KEY=" >> .env
-        echo "APP_DEBUG=true" >> .env
-        echo "APP_URL=http://localhost" >> .env
-        echo "DB_CONNECTION=sqlite" >> .env
-        echo "DB_DATABASE=:memory:" >> .env
-        echo "SESSION_DRIVER=array" >> .env
-        echo "CACHE_STORE=array" >> .env
-        echo "QUEUE_CONNECTION=sync" >> .env
-        echo "MAIL_MAILER=array" >> .env
-
-    - name: Generate application key
-      run: php artisan key:generate
-
+        # Use CI environment template for automated testing
+        php artisan boilerplate:env copy ci --force
+        php artisan key:generate --no-interaction
+        
     - name: Clear config cache
       run: php artisan config:clear
 

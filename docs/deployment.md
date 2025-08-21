@@ -4,6 +4,11 @@ Ez az útmutató a Laravel Vállalati Boilerplate produkciós környezetekbe val
 
 ## 📋 Tartalomjegyzék
 
+### ⚡ Gyors Telepítés (Ajánlott)
+- [Quick Start Script Produkciós Telepítés](#quick-start-script-produkciós-telepítés)
+- [Automatizált CI/CD Deploy](#automatizált-cicd-deploy)
+
+### 🔧 Manuális Telepítés
 - [Előfeltételek](#előfeltételek)
 - [Szerver Követelmények](#szerver-követelmények)
 - [Környezet Beállítás](#környezet-beállítás)
@@ -16,6 +21,219 @@ Ez az útmutató a Laravel Vállalati Boilerplate produkciós környezetekbe val
 - [Biztonsági Ellenőrzőlista](#biztonsági-ellenőrzőlista)
 - [Biztonsági Mentési Stratégia](#biztonsági-mentési-stratégia)
 - [CI/CD Pipeline](#cicd-pipeline)
+
+## ⚡ Quick Start Script Produkciós Telepítés
+
+### Egyparancs Produkciós Setup
+
+A Quick Start Script támogatja a biztonságos produkciós telepítést automatizált biztonsági ellenőrzésekkel:
+
+```bash
+# Klónozás és produkciós setup
+git clone https://github.com/TGaben/boilerplate.git myapp-production
+cd myapp-production
+
+# Produkciós környezet beállítása
+./scripts/quick-start.sh --env=production \
+  --domain=myapp.com \
+  --skip-interactive \
+  --skip-tests
+```
+
+### Mit Csinál Automatikusan (Production)?
+
+✅ **Biztonsági Validáció**
+- REPLACE_WITH_* értékek ellenőrzése
+- Erős jelszavak validálása
+- HTTPS kényszerítés beállítása
+- Session és cache biztonság
+
+✅ **Teljesítmény Optimalizáció**
+- Production cache beállítások
+- Asset optimalizáció
+- Database connection pooling
+- Redis konfiguráció
+
+✅ **Production Dependencies**
+- Optimalizált Composer install
+- Production NPM build
+- Asset minification és compression
+
+✅ **Biztonsági Konfigurációk**
+- Secure headers beállítása
+- CSRF protection
+- Session encryption
+- Environment variable validation
+
+### Production Deploy Workflow
+
+```bash
+# 1. Szerver előkészítése
+sudo apt update && sudo apt install -y docker.io docker-compose git
+
+# 2. SSL tanúsítvány (Let's Encrypt)
+sudo apt install certbot
+sudo certbot certonly --standalone -d myapp.com
+
+# 3. Projekt telepítése
+git clone https://github.com/myorg/myapp.git /var/www/myapp
+cd /var/www/myapp
+
+# 4. Production setup script
+./scripts/quick-start.sh --env=production \
+  --domain=myapp.com \
+  --skip-interactive
+
+# 5. Nginx/Apache beállítása (lásd alább)
+
+# 6. Firewall és biztonság
+sudo ufw allow 80,443/tcp
+sudo ufw enable
+```
+
+### Docker Production Deploy
+
+```bash
+# Production Docker Compose override
+cat > docker-compose.prod.yml << EOF
+version: '3.8'
+services:
+  laravel.test:
+    environment:
+      - APP_ENV=production
+    volumes:
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+  mysql:
+    restart: unless-stopped
+    volumes:
+      - mysql_data:/var/lib/mysql
+  redis:
+    restart: unless-stopped
+volumes:
+  mysql_data:
+EOF
+
+# Start production containers
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+
+### Zero-Downtime Deployment
+
+```bash
+#!/bin/bash
+# deploy.sh script
+
+set -e
+
+echo "🚀 Starting zero-downtime deployment..."
+
+# 1. Backup current version
+sudo cp -r /var/www/myapp /var/www/myapp.backup.$(date +%s)
+
+# 2. Pull latest changes
+cd /var/www/myapp
+git pull origin main
+
+# 3. Quick setup with production optimizations
+./scripts/quick-start.sh --env=production --skip-interactive --force
+
+# 4. Run migrations safely
+php artisan migrate --force
+
+# 5. Reload application
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+sudo systemctl reload nginx
+
+echo "✅ Deployment complete!"
+```
+
+### Production Monitoring Integration
+
+```bash
+# Health check endpoint
+./scripts/quick-start.sh --env=production --domain=myapp.com
+
+# Automatikus health check
+curl -f https://myapp.com/health || exit 1
+
+# Performance benchmark
+time ./scripts/quick-start.sh --check-only
+```
+
+### Troubleshooting Production Issues
+
+**1. Gyors diagnózis:**
+```bash
+# Rendszer állapot
+./scripts/quick-start.sh --env=production --check-only
+
+# Environment validáció
+php artisan boilerplate:env validate --target-env=production
+
+# Log ellenőrzés
+tail -f storage/logs/laravel.log
+```
+
+**2. Rollback process:**
+```bash
+# Ha valami elromlik, gyors rollback
+sudo mv /var/www/myapp.backup.TIMESTAMP /var/www/myapp
+sudo systemctl reload nginx
+```
+
+---
+
+## Automatizált CI/CD Deploy
+
+### GitHub Actions Production Deploy
+
+```yaml
+# .github/workflows/deploy-production.yml
+name: Production Deploy
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to production
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.PROD_HOST }}
+        username: ${{ secrets.PROD_USER }}
+        key: ${{ secrets.PROD_SSH_KEY }}
+        script: |
+          cd /var/www/myapp
+          git pull origin main
+          ./scripts/quick-start.sh --env=production --skip-interactive --force
+          sudo systemctl reload nginx
+```
+
+### GitLab CI Production Deploy
+
+```yaml
+# .gitlab-ci.yml
+deploy_production:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - echo "Deploying to production..."
+    - ssh $PROD_USER@$PROD_HOST "cd /var/www/myapp && git pull && ./scripts/quick-start.sh --env=production --skip-interactive"
+```
+
+---
 
 ## 🚀 Előfeltételek
 

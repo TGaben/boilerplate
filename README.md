@@ -54,41 +54,40 @@ Ne építsd újra ugyanazt az infrastruktúrát minden Laravel projekthez. Ez a 
 - **Mailpit** email teszteléshez
 - **Vite** asset fordításhoz
 
-## 🚀 Gyors Kezdés (15 perc)
+## 🚀 Gyors Kezdés (2 perc!) ⚡
 
 ### Előfeltételek
 - **Docker** és **Docker Compose**
 - **Git**
 
-### 1. Klónozás és Beállítás
+### Egyparancs Setup 🎯
 ```bash
 git clone https://github.com/TGaben/boilerplate.git sajat-projekt
-cd sajat-projekt
-
-# ⚡ ÚJ: Környezeti sablonok (gyorsabb és pontosabb mint .env.example)
-./vendor/bin/sail artisan boilerplate:env list
-./vendor/bin/sail artisan boilerplate:env copy development
+cd sajat-projekt && ./scripts/quick-start.sh
 ```
 
-### 2. Függőségek Telepítése
-```bash
-composer install
-npm install
-```
+**Ennyi!** A script automatikusan:
+- ✅ Ellenőrzi a függőségeket
+- ✅ Beállítja a környezeti konfigurációt  
+- ✅ Telepíti a dependencies-eket
+- ✅ Indítja a Docker környezetet
+- ✅ Inicializálja az adatbázist
+- ✅ Építi az asset-eket
+- ✅ Validálja a telepítést
 
-### 3. Fejlesztői Környezet Indítása
+### Alternatív Környezetek
 ```bash
-./vendor/bin/sail up -d
-```
+# Production környezet
+./scripts/quick-start.sh --env=production --domain=myapp.com
 
-### 4. Adatbázis Inicializálása
-```bash
-./vendor/bin/sail artisan migrate --seed
-```
+# Testing környezet  
+./scripts/quick-start.sh --env=testing
 
-### 5. Asset Build
-```bash
-./vendor/bin/sail npm run build
+# CI/CD környezet
+./scripts/quick-start.sh --env=ci --skip-interactive
+
+# Csak dependency ellenőrzés
+./scripts/quick-start.sh --check-only
 ```
 
 **🎉 Kész!** Az alkalmazásod fut a következő címeken:

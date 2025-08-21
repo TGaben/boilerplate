@@ -34,31 +34,40 @@ Ez a projekt egy magatartási kódexet követ. A részvétellel elvárjuk, hogy 
 - **Docker & Docker Compose**
 - **Git**
 
-### Gyors Beállítás
+### ⚡ Egyparancs Setup (Ajánlott)
 
 ```bash
 # 1. Fork-old és klónozd a repository-t
 git clone https://github.com/TE_FELHASZNALONEVED/boilerplate.git
 cd boilerplate
 
-# 2. Telepítsd a függőségeket
+# 2. Quick Start Script (minden mást elvégez)
+./scripts/quick-start.sh
+```
+
+**Ennyi!** A script automatikusan elvégzi az összes setup lépést.
+
+### 🔧 Manuális Setup (Speciális Esetek)
+
+Ha valami specifikus konfigurációra van szükséged:
+
+```bash
+# Dependency ellenőrzés
+./scripts/quick-start.sh --check-only
+
+# Specifikus környezet
+./scripts/quick-start.sh --env=testing
+
+# Kényszerített újratelepítés
+./scripts/quick-start.sh --force
+
+# Részletes manuális lépések...
 composer install
 npm install
-
-# 3. Állítsd be a környezetet
-cp .env.example .env
-
-# 4. Indítsd el a fejlesztői környezetet
+./vendor/bin/sail artisan boilerplate:env copy development
 ./vendor/bin/sail up -d
-
-# 5. Inicializáld az adatbázist
 ./vendor/bin/sail artisan migrate --seed
-
-# 6. Build-eld az asset-eket
 ./vendor/bin/sail npm run dev
-
-# 7. Futtasd a teszteket, hogy minden működik
-./vendor/bin/sail artisan test
 ```
 
 ## 🛠️ Fejlesztői Beállítás
@@ -183,6 +192,9 @@ A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőr
 git add .
 git commit -m "feat: új funkció hozzáadása"
 git push origin feature/branch-nev
+
+# 💡 Tipp: Új projekt esetén használd a quick-start scriptet:
+# ./scripts/quick-start.sh
 ```
 
 ### 🚀 **Scaffolding Parancsok (ÚJ!)**
