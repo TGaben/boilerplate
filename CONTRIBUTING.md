@@ -92,7 +92,7 @@ A projekt **Laravel Pint**-et használ kódformázáshoz:
 
 ### Statikus Elemzés
 
-**PHPStan Level 5**-öt használunk statikus elemzéshez:
+**PHPStan Max Level**-t használunk a legszigorúbb típusbiztonság érdekében:
 
 ```bash
 # Statikus elemzés futtatása
@@ -172,7 +172,7 @@ A legegyszerűbb és legbiztonságosabb módja a minőségbiztosítási ellenőr
    ./vendor/bin/sail pint               # Automatikus javítás
    ```
 
-3. **Statikus Elemzés**: PHPStan Level 5-ön át kell mennie
+3. **Statikus Elemzés**: PHPStan Max Level-en át kell mennie
    ```bash
    ./vendor/bin/sail composer stan
    ```

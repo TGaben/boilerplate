@@ -15,6 +15,7 @@ class RecipeManager
 {
     protected Filesystem $files;
 
+    /** @var array<string, mixed> */
     protected array $config;
 
     protected string $installedRecipesFile;
@@ -34,6 +35,8 @@ class RecipeManager
 
     /**
      * Get all available recipes from the catalog.
+     *
+     * @return Collection<string, array<string, mixed>>
      */
     public function getAvailableRecipes(): Collection
     {
@@ -44,6 +47,8 @@ class RecipeManager
 
     /**
      * Get recipes filtered by category.
+     *
+     * @return Collection<string, array<string, mixed>>
      */
     public function getRecipesByCategory(string $category): Collection
     {
@@ -54,6 +59,8 @@ class RecipeManager
 
     /**
      * Get recipes filtered by difficulty level.
+     *
+     * @return Collection<string, array<string, mixed>>
      */
     public function getRecipesByDifficulty(string $difficulty): Collection
     {
@@ -64,6 +71,8 @@ class RecipeManager
 
     /**
      * Get all recipe categories.
+     *
+     * @return array<string, mixed>
      */
     public function getCategories(): array
     {

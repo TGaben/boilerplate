@@ -1,5 +1,8 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
 parameters:
-    level: 5
+    level: max
     paths:
         - app
         - config
@@ -11,80 +14,10 @@ parameters:
     bootstrapFiles:
         - vendor/autoload.php
     
-    # Ignore common Laravel patterns and env() casting issues
+    # Keep only actively used patterns - temporary until we fix the actual issues
     ignoreErrors:
         - '#Cannot cast mixed to (string|int)\.#'
         - '#Binary operation "\." between .* and .* results in an error\.#'
-        - '#Cannot call method forgetCachedPermissions\(\) on mixed\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::firstOrCreate\(\)\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::firstOrCreate\(\)\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::count\(\)\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::count\(\)\.#'
-        - '#Call to an undefined method .*::assignRole\(\)\.#'
-        - '#Call to an undefined method .*::hasRole\(\)\.#'
-        - '#Call to an undefined method .*::can\(\)\.#'
-        - '#Method Spatie\\Permission\\Contracts\\Role::hasPermissionTo\(\) invoked with 1 parameter, 2 required\.#'
-        - '#Call to an undefined static method App\\Models\\User::firstOrCreate\(\)\.#'
-        - '#Call to an undefined static method App\\Models\\User::where\(\)\.#'
-        - '#Call to an undefined method .*::givePermissionTo\(\)\.#'
-        - '#Call to an undefined method .*::hasPermissionTo\(\)\.#'
-        - '#Call to an undefined method .*::getAllPermissions\(\)\.#'
-        - '#Parameter .* of method .*::actingAs\(\) expects .*Authenticatable.*given\.#'
-        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory::id\(\)\.#'
-        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory::user\(\)\.#'
-        - '#Access to an undefined property App\\Models\\User::\$(id|password|roles|created_at|updated_at|name)\.#'
-        - '#Access to an undefined property Spatie\\Permission\\Models\\Role::\$users\.#'
-        - '#Anonymous function should return Illuminate\\Database\\Eloquent\\Builder but returns Illuminate\\Database\\Query\\Builder\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Role::where\(\)\.#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::where\(\)\.#'
-        - '#Call to an undefined static method App\\Models\\User::count\(\)\.#'
-        - '#Call to an undefined static method App\\Models\\User::role\(\)\.#'
-        
-        # Translation function type issues - Laravel __() returns array|string|null but Filament expects string
-        - '#Method App\\Filament\\Resources\\.*::getNavigationLabel\(\) should return string but returns array\|string\|null\.#'
-        - '#Method App\\Filament\\Resources\\.*::getModelLabel\(\) should return string but returns array\|string\|null\.#'
-        - '#Method App\\Filament\\Resources\\.*::getPluralModelLabel\(\) should return string but returns array\|string\|null\.#'
-        - '#Method App\\Filament\\Resources\\.*::getNavigationGroup\(\) should return string\|null but returns array\|string\|null\.#'
-        - '#Parameter \#1 \$label of method Filament\\Forms\\Components\\Component::label\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$text of method Filament\\Forms\\Components\\Field::helperText\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$label of method Filament\\Tables\\Columns\\Column::label\(\) expects .* array\|string\|null given\.#'
-        # Ignore Widget translation helper type mismatches  
-        - '#Parameter \#1 \$label of static method Filament\\Widgets\\StatsOverviewWidget\\Stat::make\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$description of method Filament\\Widgets\\StatsOverviewWidget\\Stat::description\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$placeholder of method Filament\\Tables\\Columns\\Column::placeholder\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$heading of method Filament\\Tables\\Table::heading\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$description of method Filament\\Tables\\Table::description\(\) expects .* array\|string\|null given\.#'
-
-        
-        # Ignore translation function return type ambiguity in ActivityResource ViewActivity
-        - '#Parameter \#1 \$label of method Filament\\Infolists\\Components\\Component::label\(\) expects .* array\|string\|null given\.#'
-        - '#Parameter \#1 \$placeholder of method Filament\\Infolists\\Components\\Entry::placeholder\(\) expects .* array\|string\|null given\.#'
-        
-        # Ignore Schema connection parameter type issues in migrations (Laravel dynamic config)
-        - '#Parameter \#1 \$name of static method Illuminate\\Support\\Facades\\Schema::connection\(\) expects string\|null, mixed given\.#'
-        - '#Parameter \#1 \$table of method Illuminate\\Database\\Schema\\Builder::(create|dropIfExists|table)\(\) expects string, mixed given\.#'
-        
-        # Ignore User factory/model type issues in tests (Laravel factories return Collection or Model)
-        - '#Access to an undefined property App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.*::\$id\.#'
-        - '#Call to an undefined method App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.*::update\(\)\.#'
-        - '#Parameter \#1 \$user of method App\\Policies\\.*::.*\(\) expects App\\Models\\User, App\\Models\\User\|Illuminate\\Database\\Eloquent\\Collection.* given\.#'
-        
-        # Ignore Activity model static method calls (Spatie ActivityLog Eloquent model)
-        - '#Call to an undefined static method Spatie\\Activitylog\\Models\\Activity::(where|first|truncate|create)\(\)\.#'
-        - '#Parameter \#1 \$array of function array_keys expects array, mixed given\.#'
-        - '#Parameter \#1 \$key of static method Illuminate\\Support\\Facades\\Session::.* expects .* mixed given\.#'
-        - '#Parameter \#1 \$locale of static method Illuminate\\Support\\Facades\\App::setLocale\(\) expects string, mixed given\.#'
-        - '#Method App\\Http\\Controllers\\LanguageController::.* should return .* but returns mixed\.#'
-        - '#Parameter \#2 \$array of method PHPUnit\\Framework\\Assert::assertArrayHasKey\(\) expects .* mixed given\.#'
-        - '#Cannot call method token\(\) on mixed\.#'
-        - '#Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert::assertStringContainsString\(\) expects string, string\|false given\.#'
-        
-        # Console Commands - mixed types from argument/option methods
-        - '#Cannot cast array\|bool\|string\|null to string#'
-        - '#Parameter \#2 \$contents of method Illuminate\\Filesystem\\Filesystem::put\(\) expects string, string\|null given#'
-        - '#Access to an undefined property Spatie\\Permission\\Models\\Role::\$permissions#'
-        - '#Call to an undefined static method Spatie\\Permission\\Models\\Permission::orderBy\(\)#'
-        - '#Right side of && is always true#'
 
     
     # Exclude generated files and vendor

@@ -77,7 +77,7 @@ jobs:
     - name: Check code style (Laravel Pint)
       run: composer lint
 
-    - name: Run static analysis (PHPStan)
+    - name: Run static analysis (PHPStan Max Level)
       run: composer stan
 
     - name: Run tests

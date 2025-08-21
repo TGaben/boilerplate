@@ -8,23 +8,31 @@ use Illuminate\Support\Facades\Validator;
 
 class EnvironmentValidator
 {
+    /** @var array<string, mixed> */
     protected array $config;
 
+    /** @var array<string, string> */
     protected array $environment;
 
+    /** @var array<string, list<string>> */
     protected array $errors = [];
 
+    /** @var array<string, list<string>> */
     protected array $warnings = [];
 
     public function __construct()
     {
         $config = config('environment.validation');
         $this->config = is_array($config) ? $config : [];
-        $this->environment = $_ENV;
+
+        // Cast $_ENV to proper type
+        $this->environment = array_map(fn ($value) => (string) $value, $_ENV);
     }
 
     /**
      * Validate the current environment configuration
+     *
+     * @return array{valid: bool, errors: array<string, list<string>>, warnings: array<string, list<string>>, environment: string}
      */
     public function validate(?string $targetEnv = null): array
     {
@@ -53,7 +61,14 @@ class EnvironmentValidator
     {
         $required = $this->config['required'] ?? [];
 
+        if (!is_array($required)) {
+            return;
+        }
+
         foreach ($required as $key => $rules) {
+            if (!is_string($key) || !is_string($rules)) {
+                continue;
+            }
             $value = $this->getEnvValue($key);
 
             if ($value === null) {
@@ -72,7 +87,14 @@ class EnvironmentValidator
     {
         $requiredByEnv = $this->config['required_by_env'][$env] ?? [];
 
+        if (!is_array($requiredByEnv)) {
+            return;
+        }
+
         foreach ($requiredByEnv as $key => $rules) {
+            if (!is_string($key) || !is_string($rules)) {
+                continue;
+            }
             $value = $this->getEnvValue($key);
 
             if ($value === null) {
@@ -232,6 +254,8 @@ class EnvironmentValidator
 
     /**
      * Get validation summary
+     *
+     * @return array{status: string, environment: string, error_count: int, warning_count: int, total_checked: int}
      */
     public function getSummary(): array
     {
@@ -274,6 +298,8 @@ class EnvironmentValidator
 
     /**
      * Get available templates
+     *
+     * @return array<string, mixed>
      */
     public function getAvailableTemplates(): array
     {

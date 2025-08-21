@@ -51,6 +51,8 @@ class LanguageController extends Controller
 
     /**
      * Get all available languages.
+     *
+     * @return array<string, string>
      */
     public function available(): array
     {

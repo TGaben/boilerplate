@@ -42,7 +42,7 @@ class LanguageSwitcher extends Component
         $this->js('window.location.reload()');
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('livewire.language-switcher', [
             'availableLanguages' => config('languages.available', []),

@@ -7,7 +7,7 @@ A `scripts/quality-check.sh` egy átfogó minőségbiztosítási script, amely a
 Ez a script biztosítja, hogy:
 - Minden teszt sikeres legyen
 - A kód követi a PSR-12 szabványt
-- A statikus elemzés (PHPStan Level 5) hibamentes
+- A statikus elemzés (PHPStan Max Level) hibamentes
 - A CI/CD pipeline ne bukjon el kódminőségi problémák miatt
 
 ## 📋 Használat
@@ -84,7 +84,7 @@ graph TD
 ```bash
 ./vendor/bin/sail composer stan
 ```
-- PHPStan Level 5 elemzés
+- PHPStan Max Level elemzés
 - Típusproblémák és logikai hibák keresése
 - Megáll, ha bármilyen hibát talál
 
@@ -151,7 +151,7 @@ git push origin feature/user-updates
 📊 Összefoglaló:
    🧪 Tesztek: Sikeres
    🎨 Kódstílus: Megfelelő (PSR-12)
-   🔍 Statikus elemzés: Hibamentes (PHPStan Level 5)
+   🔍 Statikus elemzés: Hibamentes (PHPStan Max Level)
    ⏱️  Futási idő: 12 másodperc
 
 🚀 Készen állsz a commit-ra és push-ra!
