@@ -87,11 +87,13 @@
                             Filament PHP
                         </a>
                     </li>
+                    @if(app()->environment(['local', 'development']))
                     <li>
-                        <a href="#" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200">
+                        <a href="{{ route('docs.index') }}" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200">
                             Documentation
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>

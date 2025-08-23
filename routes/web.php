@@ -12,8 +12,8 @@ Route::post('/language/switch/{language}', [LanguageController::class, 'switch']
     ->name('language.switch')
     ->middleware(['web', \App\Http\Middleware\SetLocale::class]);
 
-// Documentation Routes
-Route::prefix('docs')->name('docs.')->group(function () {
+// Documentation Routes (Development only)
+Route::prefix('docs')->name('docs.')->middleware('docs.dev')->group(function () {
     Route::get('/', [App\Http\Controllers\DocsController::class, 'index'])->name('index');
     Route::get('/search', [App\Http\Controllers\DocsController::class, 'search'])->name('search');
     Route::get('/{category}', [App\Http\Controllers\DocsController::class, 'category'])->name('category');
