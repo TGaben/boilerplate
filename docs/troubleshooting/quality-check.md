@@ -24,6 +24,9 @@ Ez a script biztosítja, hogy:
 # Csak kódminőség ellenőrzés (tesztek kihagyása)
 ./scripts/quality-check.sh --skip-tests
 
+# Dokumentáció import kihagyása
+./scripts/quality-check.sh --skip-docs
+
 # Csak kódstílus javítás (gyors)
 ./scripts/quality-check.sh --fix-only
 ```
@@ -34,6 +37,7 @@ Ez a script biztosítja, hogy:
 |-------|--------|-----------|
 | `--help` | Súgó megjelenítése | `./scripts/quality-check.sh --help` |
 | `--skip-tests` | Tesztek kihagyása | Gyorsabb ellenőrzés, ha csak kódminőséget akarsz ellenőrizni |
+| `--skip-docs` | Dokumentáció import kihagyása | Ha nem akarsz dokumentáció importot futtatni |
 | `--fix-only` | Csak Pint javítás | Ha csak kódstílus hibákat akarsz javítani |
 
 ## 🔄 Mit Csinál a Script?
@@ -55,7 +59,10 @@ graph TD
     K --> H
     H --> L{PHPStan hibák vannak?}
     L -->|Igen| M[HIBA: Típusproblémák javítandók]
-    L -->|Nem| N[✅ SIKERES! Készen a commit-ra]
+    L -->|Nem| O[Dokumentáció importálása]
+    O --> P{Docs import sikeres?}
+    P -->|Nem| Q[HIBA: Dokumentáció problémák]
+    P -->|Igen| N[✅ SIKERES! Készen a commit-ra]
 ```
 
 ### 2. Lépésről Lépésre
@@ -88,7 +95,16 @@ graph TD
 - Típusproblémák és logikai hibák keresése
 - Megáll, ha bármilyen hibát talál
 
-#### 🔄 **4. Végleges Teszt Futtatás**
+#### 📚 **4. Dokumentáció Importálása**
+```bash
+./vendor/bin/sail artisan docs:import --fresh
+```
+- Automatikusan importálja a `/docs` mappa tartalmát
+- Meilisearch indexelés a keresési funkcionalitáshoz
+- Biztosítja, hogy a dokumentáció naprakész legyen
+- Kihagyható `--skip-docs` opcióval
+
+#### 🔄 **5. Végleges Teszt Futtatás**
 - Ha a Pint módosította a kódot, újrafuttatja a teszteket
 - Biztosítja, hogy a javítások nem törtek el semmit
 
@@ -146,13 +162,17 @@ git push origin feature/user-updates
 🔍 Statikus kódelemzés (PHPStan)...
 ✅ Statikus kódelemzés (PHPStan) sikeres!
 
+📚 Dokumentáció importálása...
+✅ Dokumentáció importálása sikeres!
+
 ✅✅✅ MINDEN MINŐSÉGI ELLENŐRZÉS SIKERES! ✅✅✅
 
 📊 Összefoglaló:
    🧪 Tesztek: Sikeres
    🎨 Kódstílus: Megfelelő (PSR-12)
    🔍 Statikus elemzés: Hibamentes (PHPStan Max Level)
-   ⏱️  Futási idő: 12 másodperc
+   📚 Dokumentáció: Importálva
+   ⏱️  Futási idő: 14 másodperc
 
 🚀 Készen állsz a commit-ra és push-ra!
 
@@ -203,8 +223,9 @@ Következő lépések:
 
 | Ellenőrzés Típusa | Átlagos Futási Idő | Megjegyzés |
 |-------------------|-------------------|------------|
-| Teljes ellenőrzés | 8-15 másodperc | Függ a projekt méretétől |
-| `--skip-tests` | 2-5 másodperc | Gyors kódminőség ellenőrzés |
+| Teljes ellenőrzés | 10-18 másodperc | Tartalmazza a dokumentáció importot |
+| `--skip-tests` | 4-8 másodperc | Gyors kódminőség ellenőrzés |
+| `--skip-docs` | 6-12 másodperc | Dokumentáció import kihagyása |
 | `--fix-only` | 1-3 másodperc | Csak Pint javítás |
 
 ### Optimalizációs Tippek

@@ -86,8 +86,10 @@ cd sajat-projekt && ./scripts/quick-start.sh
 # CI/CD környezet
 ./scripts/quick-start.sh --env=ci --skip-interactive
 
-# Csak dependency ellenőrzés
-./scripts/quick-start.sh --check-only
+# Utility opciók
+./scripts/quick-start.sh --check-only    # Dependency ellenőrzés
+./scripts/quick-start.sh --force         # Újratelepítés kényszerítése
+./scripts/quick-start.sh --skip-tests    # Gyorsabb setup (tesztek nélkül)
 ```
 
 **🎉 Kész!** Az alkalmazásod fut a következő címeken:

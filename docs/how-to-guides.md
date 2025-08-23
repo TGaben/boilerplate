@@ -49,6 +49,7 @@ A `scripts/quick-start.sh` egyetlen paranccsal végzi el az összes setup lépé
 # Utility funkciók
 ./scripts/quick-start.sh --check-only    # Csak dependency ellenőrzés
 ./scripts/quick-start.sh --force         # Kényszerített újratelepítés
+./scripts/quick-start.sh --skip-tests    # Tesztek átugrása (gyorsabb setup)
 ./scripts/quick-start.sh --help          # Teljes súgó
 ```
 
