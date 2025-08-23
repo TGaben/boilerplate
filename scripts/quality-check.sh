@@ -11,6 +11,7 @@
 #
 # Opciók:
 #   --skip-tests    A tesztek kihagyása (csak kódminőség ellenőrzés)
+#   --skip-docs     A dokumentáció import kihagyása
 #   --fix-only      Csak a kódstílus javítás, ellenőrzések kihagyása
 #   --help          Súgó megjelenítése
 
@@ -36,6 +37,7 @@ WARNING="⚠️"
 
 # Default options
 SKIP_TESTS=false
+SKIP_DOCS=false
 FIX_ONLY=false
 SHOW_HELP=false
 
@@ -44,6 +46,10 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         --skip-tests)
             SKIP_TESTS=true
+            shift
+            ;;
+        --skip-docs)
+            SKIP_DOCS=true
             shift
             ;;
         --fix-only)
@@ -71,12 +77,14 @@ if [ "$SHOW_HELP" = true ]; then
     echo ""
     echo "Opciók:"
     echo "  --skip-tests    A tesztek kihagyása (csak kódminőség ellenőrzés)"
+    echo "  --skip-docs     A dokumentáció import kihagyása"
     echo "  --fix-only      Csak a kódstílus javítás, ellenőrzések kihagyása"
     echo "  --help          Súgó megjelenítése"
     echo ""
     echo "Példák:"
     echo "  ./scripts/quality-check.sh                    # Teljes ellenőrzés"
     echo "  ./scripts/quality-check.sh --skip-tests       # Tesztek nélkül"
+    echo "  ./scripts/quality-check.sh --skip-docs        # Dokumentáció import nélkül"
     echo "  ./scripts/quality-check.sh --fix-only         # Csak Pint javítás"
     exit 0
 fi
@@ -167,7 +175,20 @@ if ! run_command "./vendor/bin/sail composer stan" "Statikus kódelemzés (PHPSt
     exit 1
 fi
 
-# Step 4: Final test run (only if code style was fixed and tests weren't skipped)
+# Step 4: Import Documentation (unless skipped)
+if [ "$SKIP_DOCS" = false ]; then
+    if [ -d "docs" ]; then
+        if ! run_command "./vendor/bin/sail artisan docs:import --fresh" "Dokumentáció importálása" "📚"; then
+            echo -e "${RED}${CROSS_MARK} Dokumentáció import sikertelen!${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${YELLOW}${WARNING} Dokumentáció mappa nem található, kihagyva${NC}"
+        echo ""
+    fi
+fi
+
+# Step 5: Final test run (only if code style was fixed and tests weren't skipped)
 if [ "$SKIP_TESTS" = false ]; then
     # Check if any files were modified by Pint
     if ! git diff --quiet; then
@@ -190,6 +211,7 @@ echo -e "${PURPLE}📊 Összefoglaló:${NC}"
 echo -e "   ${TEST_TUBE} Tesztek: $([ "$SKIP_TESTS" = true ] && echo "Kihagyva" || echo "Sikeres")"
 echo -e "   ${PAINT} Kódstílus: Megfelelő (PSR-12)"
 echo -e "   ${MAGNIFIER} Statikus elemzés: Hibamentes (PHPStan Max Level)"
+echo -e "   📚 Dokumentáció: $([ "$SKIP_DOCS" = true ] && echo "Kihagyva" || echo "Importálva")"
 echo -e "   ⏱️  Futási idő: ${DURATION} másodperc"
 echo ""
 echo -e "${GREEN}${ROCKET} Készen állsz a commit-ra és push-ra!${NC}"

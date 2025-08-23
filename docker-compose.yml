@@ -24,6 +24,7 @@ services:
         depends_on:
             - mysql
             - mailpit
+            - meilisearch
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -56,9 +57,32 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
+    meilisearch:
+        image: 'getmeili/meilisearch:v1.8'
+        ports:
+            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+        environment:
+            MEILI_NO_ANALYTICS: '${MEILI_NO_ANALYTICS:-true}'
+            MEILI_ENV: '${MEILI_ENV:-development}'
+            MEILI_MASTER_KEY: '${MEILI_MASTER_KEY:-}'
+        volumes:
+            - 'sail-meilisearch:/meili_data'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - wget
+                - '--no-verbose'
+                - '--spider'
+                - 'http://localhost:7700/health'
+            retries: 3
+            timeout: 5s
 networks:
     sail:
         driver: bridge
 volumes:
     sail-mysql:
+        driver: local
+    sail-meilisearch:
         driver: local

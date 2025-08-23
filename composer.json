@@ -10,7 +10,11 @@
         "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
         "laravel/framework": "^12.0",
+        "laravel/scout": "^10.18",
         "laravel/tinker": "^2.10.1",
+        "league/commonmark": "^2.7",
+        "livewire/livewire": "^3.6",
+        "meilisearch/meilisearch-php": "^1.15",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-permission": "^6.21"
     },
