@@ -3,11 +3,8 @@
         <div class="flex justify-between items-center h-16">
             <!-- Logo and Brand -->
             <div class="flex items-center">
-                <a href="{{ url('/') }}" class="flex items-center space-x-2">
-                    <img class="h-8 w-8" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
-                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                        {{ config('boilerplate.brand.name', config('app.name')) }}
-                    </span>
+                <a href="{{ url('/') }}" class="flex items-center">
+                    <img class="h-10 w-auto" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
                 </a>
             </div>
 

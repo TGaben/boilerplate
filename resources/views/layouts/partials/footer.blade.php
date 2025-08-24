@@ -3,11 +3,8 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Brand Section -->
             <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center space-x-2 mb-4">
-                    <img class="h-8 w-8" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
-                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                        {{ config('boilerplate.brand.name', config('app.name')) }}
-                    </span>
+                <div class="flex items-center mb-4">
+                    <img class="h-10 w-auto" src="{{ asset('images/logo.svg') }}" alt="{{ config('app.name') }}">
                 </div>
                 <p class="text-secondary-600 dark:text-secondary-400 text-sm max-w-md">
                     A professional Laravel boilerplate with admin panel, user management, 
