@@ -44,7 +44,7 @@ class QueryPerformanceTest extends TestCase
             $this->assertTrue($user->relationLoaded('roles'));
             if ($user->roles->isNotEmpty()) {
                 $firstRole = $user->roles->first();
-                if ($firstRole !== null && property_exists($firstRole, 'name')) {
+                if (property_exists($firstRole, 'name')) {
                     $this->assertIsString($firstRole->name);
                 }
             }

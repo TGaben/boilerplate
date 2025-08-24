@@ -24,8 +24,10 @@ class DatabaseOptimizationService
      */
     public function getCategoriesWithCounts(): array
     {
+        /** @var array<string, array<string, mixed>> */
         return Cache::remember('docs.categories.optimized', 3600, function (): array {
-            return Documentation::categoriesWithCounts()
+            /** @var array<string, array<string, mixed>> $result */
+            $result = Documentation::categoriesWithCounts()
                 ->get()
                 ->mapWithKeys(function ($item) {
                     $category = $item->category ?? 'general';
@@ -42,6 +44,8 @@ class DatabaseOptimizationService
                         ],
                     ];
                 })->toArray();
+
+            return $result;
         });
     }
 
@@ -55,11 +59,15 @@ class DatabaseOptimizationService
      */
     public function getRecentDocumentsByCategory(string $category, int $limit = 5): Collection
     {
+        /** @var Collection<int, Documentation> */
         return Cache::remember("docs.recent.{$category}.{$limit}", 1800, function () use ($category, $limit): Collection {
-            return Documentation::byCategory($category)
+            /** @var Collection<int, Documentation> $result */
+            $result = Documentation::byCategory($category)
                 ->recent($limit)
                 ->select('id', 'title', 'slug', 'excerpt', 'category', 'updated_at')
                 ->get();
+
+            return $result;
         });
     }
 
@@ -95,8 +103,10 @@ class DatabaseOptimizationService
      */
     public function getUserStatistics(): array
     {
+        /** @var array<string, int> */
         return Cache::remember('admin.user_statistics', 600, function (): array {
-            return [
+            /** @var array<string, int> $stats */
+            $stats = [
                 'total_users' => User::count(),
                 'verified_users' => User::whereNotNull('email_verified_at')->count(),
                 'recent_users' => User::where('created_at', '>=', now()->subDays(30))->count(),
@@ -104,6 +114,8 @@ class DatabaseOptimizationService
                     ->where('last_login_at', '>=', now()->subDays(30))
                     ->count(),
             ];
+
+            return $stats;
         });
     }
 
@@ -117,6 +129,7 @@ class DatabaseOptimizationService
      */
     public function getActivityStatistics(): array
     {
+        /** @var array<string, mixed> */
         return Cache::remember('admin.activity_statistics', 600, function (): array {
             $recentActivities = Activity::with(['causer:id,name'])
                 ->orderBy('created_at', 'desc')
@@ -124,12 +137,15 @@ class DatabaseOptimizationService
                 ->select('id', 'description', 'causer_type', 'causer_id', 'created_at')
                 ->get();
 
-            return [
+            /** @var array<string, mixed> $stats */
+            $stats = [
                 'total_activities' => Activity::count(),
                 'recent_activities' => $recentActivities,
                 'activities_today' => Activity::whereDate('created_at', today())->count(),
                 'activities_this_week' => Activity::where('created_at', '>=', now()->subWeek())->count(),
             ];
+
+            return $stats;
         });
     }
 
@@ -263,8 +279,11 @@ class DatabaseOptimizationService
         try {
             $indexes = DB::select("SHOW INDEX FROM {$table}");
             foreach ($indexes as $index) {
-                if ($index->Key_name === $indexName) {
-                    return true;
+                if (is_object($index) && property_exists($index, 'Key_name')) {
+                    /** @var object{Key_name: string} $index */
+                    if ($index->Key_name === $indexName) {
+                        return true;
+                    }
                 }
             }
 
