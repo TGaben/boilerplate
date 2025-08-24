@@ -295,7 +295,7 @@
                     <div class="bg-white dark:bg-gray-800 shadow rounded-lg">
                         <div class="px-6 py-8">
                             <article class="documentation-content">
-                                {!! $document->content !!}
+                                {!! Purifier::clean($document->content, 'docs') !!}
                             </article>
                         </div>
                     </div>

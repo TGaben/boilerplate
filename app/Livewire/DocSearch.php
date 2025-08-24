@@ -135,25 +135,28 @@ class DocSearch extends Component
     public function highlightSearchTerms(string $text): string
     {
         if (empty($this->query)) {
-            return $text;
+            return e($text); // Escape if no highlighting needed
         }
 
+        // First escape the input text to prevent XSS
+        $escapedText = e($text);
         $searchTerms = explode(' ', $this->query);
 
         foreach ($searchTerms as $term) {
-            if (strlen(trim($term)) >= 2) {
+            $cleanTerm = trim($term);
+            if (strlen($cleanTerm) >= 2) {
                 $result = preg_replace(
-                    '/(' . preg_quote($term, '/') . ')/i',
+                    '/(' . preg_quote($cleanTerm, '/') . ')/i',
                     '<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">$1</mark>',
-                    $text,
+                    $escapedText,
                 );
                 if ($result !== null) {
-                    $text = $result;
+                    $escapedText = $result;
                 }
             }
         }
 
-        return $text;
+        return $escapedText;
     }
 
     public function clearSearch(): void
