@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DocsSearchRequest;
 use App\Models\Documentation;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
@@ -94,19 +94,11 @@ class DocsController extends Controller
     /**
      * Search documentation (API endpoint).
      */
-    public function search(Request $request): \Illuminate\Http\JsonResponse
+    public function search(DocsSearchRequest $request): \Illuminate\Http\JsonResponse
     {
-        $request->validate([
-            'q' => 'required|string|min:3|max:100',
-            'category' => 'sometimes|string|in:core,recipes,deployment,troubleshooting,general',
-            'limit' => 'sometimes|integer|min:1|max:50',
-        ]);
-
-        $queryInput = $request->input('q');
-        $query = is_string($queryInput) ? $queryInput : '';
-        $category = $request->input('category');
-        $limitInput = $request->input('limit', 10);
-        $limit = is_numeric($limitInput) ? (int) $limitInput : 10;
+        $query = $request->getSearchQuery();
+        $category = $request->getCategory();
+        $limit = $request->getLimit();
 
         $searchQuery = Documentation::search($query)->take($limit);
 

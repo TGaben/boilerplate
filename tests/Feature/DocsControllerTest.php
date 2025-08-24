@@ -131,7 +131,7 @@ class DocsControllerTest extends TestCase
     #[Test]
     public function docs_search_api_validates_minimum_query_length(): void
     {
-        $response = $this->getJson('/docs/search?q=au');
+        $response = $this->getJson('/docs/search?q=a');
 
         $response->assertStatus(422)
             ->assertJsonValidationErrors(['q']);
