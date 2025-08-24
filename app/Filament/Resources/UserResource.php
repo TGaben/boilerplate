@@ -111,6 +111,9 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(function () {
+                return \App\Models\User::query()->with(['roles:id,name']);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')

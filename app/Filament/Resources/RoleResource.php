@@ -81,6 +81,10 @@ class RoleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(function () {
+                return \Spatie\Permission\Models\Role::query()
+                    ->withCount(['permissions', 'users']);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label(__('messages.ID'))

@@ -91,6 +91,35 @@ class Documentation extends Model
     }
 
     /**
+     * Scope for recent documents (optimized with index).
+     */
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder<Documentation> $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder<Documentation>
+     */
+    public function scopeRecent($query, int $limit = 10): \Illuminate\Database\Eloquent\Builder
+    {
+        return $query->orderBy('updated_at', 'desc')->limit($limit);
+    }
+
+    /**
+     * Scope for optimized category listing with counts.
+     */
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder<Documentation> $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder<Documentation>
+     */
+    public function scopeCategoriesWithCounts($query): \Illuminate\Database\Eloquent\Builder
+    {
+        return $query->select('category')
+            ->selectRaw('COUNT(*) as document_count')
+            ->groupBy('category')
+            ->orderBy('category');
+    }
+
+    /**
      * Get the URL for this documentation page.
      */
     public function getUrlAttribute(): string

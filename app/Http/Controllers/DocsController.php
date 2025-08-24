@@ -6,38 +6,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocsSearchRequest;
 use App\Models\Documentation;
+use App\Services\DatabaseOptimizationService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class DocsController extends Controller
 {
+    public function __construct(
+        private readonly DatabaseOptimizationService $optimizationService,
+    ) {
+    }
+
     /**
      * Display the documentation index page with all categories.
      */
     public function index(): View
     {
-        $categories = Cache::remember('docs.categories', 3600, function () {
-            return Documentation::select('category')
-                ->selectRaw('COUNT(*) as document_count')
-                ->groupBy('category')
-                ->orderBy('category')
-                ->get()
-                ->mapWithKeys(function ($item) {
-                    $category = $item->category ?? 'general';
-                    $count = 0;
-                    if (isset($item->document_count) && is_numeric($item->document_count)) {
-                        $count = (int) $item->document_count;
-                    }
-
-                    return [
-                        $category => [
-                            'name' => $this->getCategoryDisplayName($category),
-                            'count' => $count,
-                            'documents' => $this->getRecentDocumentsInCategory($category),
-                        ],
-                    ];
-                });
-        });
+        $categories = $this->optimizationService->getCategoriesWithCounts();
 
         return view('docs.index', compact('categories'));
     }
@@ -148,17 +133,6 @@ class DocsController extends Controller
     /**
      * Get recent documents in category for preview.
      */
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection<int, \App\Models\Documentation>
-     */
-    private function getRecentDocumentsInCategory(string $category, int $limit = 5): \Illuminate\Database\Eloquent\Collection
-    {
-        return Documentation::byCategory($category)
-            ->orderBy('updated_at', 'desc')
-            ->limit($limit)
-            ->select('title', 'slug', 'excerpt')
-            ->get();
-    }
 
     /**
      * Build breadcrumb navigation.
